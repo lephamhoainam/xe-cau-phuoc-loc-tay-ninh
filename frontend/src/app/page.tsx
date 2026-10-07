@@ -5,6 +5,7 @@ import VehiclesSection from "../components/home/VehiclesSection";
 import NewsSection from "../components/home/NewsSection";
 import ContactSection from "../components/home/ContactSection";
 
+
 export default function Home() {
   return (
     <>

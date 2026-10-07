@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Check } from "lucide-react";
 import { site } from "../../lib/site";
 import { images, heroCard, heroTrust } from "../../lib/data";
 import Photo from "../common/Photo";
@@ -6,8 +7,8 @@ import Section from "../common/Section";
 
 export default function HeroSection() {
   return (
-    <Section className="py-16 md:py-24">
-      <div className="grid items-center gap-12 md:grid-cols-2">
+    <Section className="py-8 md:py-24">
+      <div className="grid items-center gap-8 md:grid-cols-2 md:gap-12">
         <div>
           <p className="text-sm font-semibold uppercase tracking-widest text-primary">
             Cho thuê xe cẩu · Tây Ninh
@@ -34,20 +35,14 @@ export default function HeroSection() {
             >
               Xem dịch vụ
             </Link>
-            <a
-              href={`https://zalo.me/${site.zalo}`}
-              target="_blank"
-              rel="noreferrer"
-              className="text-sm text-muted-foreground hover:text-primary"
-            >
-              Hoặc nhắn Zalo
-            </a>
           </div>
 
-          <ul className="mt-8 space-y-2 text-sm">
+          <ul className="mt-8 space-y-3 text-sm">
             {heroTrust.map((t) => (
-              <li key={t} className="flex items-center gap-2">
-                <span className="h-2 w-2 rounded-full bg-primary" />
+              <li key={t} className="flex items-center gap-3">
+                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
+                  <Check className="h-4 w-4" />
+                </span>
                 {t}
               </li>
             ))}

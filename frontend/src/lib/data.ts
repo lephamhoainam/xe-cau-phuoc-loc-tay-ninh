@@ -7,6 +7,9 @@
 //   giữ nguyên kiểu để các trang không phải sửa.
 // =====================================================================
 
+import { Truck, Factory, Building2 } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
+
 import type {
   About,
   AboutCompany,
@@ -21,7 +24,7 @@ import type {
   Reason,
   Service,
   Step,
-  Vehicle,
+  VehicleTier,
 } from "./types";
 
 // =====================================================================
@@ -83,9 +86,9 @@ export const heroCard: HeroCard = {
 };
 
 // Các dòng cam kết ngắn dưới nút ở banner
-export const heroTrust: string[] = [
+export const heroTrust = [
   "Báo giá rõ ràng, không phát sinh",
-  "Operator nhiều năm kinh nghiệm",
+  "Nhiều năm kinh nghiệm vận hành",
 ];
 
 // Phần giới thiệu ngắn ở trang chủ (số liệu 10+, 500+ chỉ là MẪU, thay số thật)
@@ -103,49 +106,144 @@ export const about: About = {
 
 // Danh sách dịch vụ hiển thị ở trang chủ
 export const services: Service[] = [
-  { title: "Cho thuê xe cẩu", desc: "Thuê theo giờ, ca, ngày hoặc tháng, tải trọng 5 – 100 tấn.", image: "" },
-  { title: "Cẩu lắp máy móc", desc: "Hạ và lắp đặt máy móc, thiết bị nhà xưởng chính xác, an toàn.", image: "" },
-  { title: "Cẩu kết cấu thép", desc: "Dựng khung thép, cột điện, trạm biến áp, cấu kiện bê tông.", image: "" },
-  { title: "Vận chuyển kèm cẩu", desc: "Chở và cẩu hàng nặng trọn gói, không cần thuê nhiều đơn vị.", image: "" },
+  {
+    slug: "cho-thue-xe-cau",
+    title: "Cho thuê xe cẩu",
+    desc: "Thuê theo giờ, ca, ngày hoặc tháng, tải trọng 5 – 100 tấn.",
+    image: "",
+    capacity: "5 – 100 tấn",
+    points: [
+      "Thuê linh hoạt theo giờ, ca, ngày, tháng",
+      "Tư vấn đúng tải trọng cần thuê",
+      "Báo giá rõ ràng trước khi triển khai",
+    ],
+  },
+  {
+    slug: "cau-lap-may-moc",
+    title: "Cẩu lắp máy móc",
+    desc: "Hạ và lắp đặt máy móc, thiết bị nhà xưởng chính xác, an toàn.",
+    image: "",
+    points: [
+      "Khảo sát mặt bằng và đường vào trước khi cẩu",
+      "Đặt máy đúng vị trí, hạn chế va chạm",
+      "Phù hợp cả mặt bằng chật hẹp",
+    ],
+  },
+  {
+    slug: "cau-ket-cau-thep",
+    title: "Cẩu kết cấu thép",
+    desc: "Dựng khung thép, cột điện, trạm biến áp, cấu kiện bê tông.",
+    image: "",
+    points: [
+      "Dựng khung thép, cột điện, trạm biến áp",
+      "Cẩu cấu kiện bê tông đúc sẵn",
+      "Thi công theo quy tắc an toàn lao động",
+    ],
+  },
+  {
+    slug: "van-chuyen-kem-cau",
+    title: "Vận chuyển kèm cẩu",
+    desc: "Chở và cẩu hàng nặng trọn gói, không cần thuê nhiều đơn vị.",
+    image: "",
+    points: [
+      "Một đầu mối cho cả vận chuyển và cẩu",
+      "Tiết kiệm thời gian phối hợp",
+      "Giao hàng thẳng đến vị trí thi công",
+    ],
+  },
 ];
 
-// Các loại xe theo tải trọng
-export const vehicles: Vehicle[] = [
-  { range: "5 – 10 tấn", use: "Máy móc nhỏ, vật tư, biển quảng cáo, hạ cây.", image: "" },
-  { range: "15 – 25 tấn", use: "Nhà xưởng, kết cấu thép, thiết bị công nghiệp.", image: "" },
-  { range: "30 – 50 tấn", use: "Cấu kiện bê tông, cột điện, thiết bị nặng.", image: "" },
-  { range: "60 – 100 tấn", use: "Dự án lớn, nhà máy, máy móc siêu trọng.", image: "" },
+// Các nhóm xe theo tải trọng (hiển thị dạng 3 card ở trang chủ)
+export const vehicleTiers: VehicleTier[] = [
+  {
+    range: "5 – 25 tấn",
+    title: "Xe cẩu 5 – 25 tấn: linh hoạt cho việc nhỏ và vừa",
+    desc: "Từ máy móc nhỏ, vật tư, biển quảng cáo, hạ cây đến công việc trong nhà xưởng và lắp kết cấu thép.",
+    icon: Truck,
+    details: [
+      "Xe 5 – 10 tấn: máy móc nhỏ, vật tư, biển quảng cáo, hạ cây. Nhỏ gọn, dễ vào hẻm và mặt bằng chật.",
+      "Xe 15 – 25 tấn: nhà xưởng, kết cấu thép, thiết bị công nghiệp. Sức nâng và tầm với lớn hơn.",
+      "Lưu ý: tầm với càng xa thì sức nâng càng giảm, hãy cho chúng tôi biết trọng lượng vật cẩu và khoảng cách từ xe đến vị trí đặt.",
+    ],
+  },
+  {
+    range: "30 – 50 tấn",
+    title: "Xe cẩu 30 – 50 tấn: cho cấu kiện và thiết bị nặng",
+    desc: "Cẩu cấu kiện bê tông, cột điện và thiết bị nặng cho công trình, nhà máy.",
+    icon: Factory,
+    details: [
+      "Công việc thường gặp: cấu kiện bê tông, cột điện, thiết bị nặng.",
+      "Mặt bằng: cần chỗ đặt chân chống phẳng và đủ chắc; nền đất yếu nên trải thêm tấm lót để tránh lún.",
+      "Khảo sát trước: vị trí đặt xe, đường vào và đường dây điện trên cao, đặc biệt khi cẩu cột điện.",
+      "Báo giá theo trọng lượng, tầm với và thời gian thi công thực tế.",
+    ],
+  },
+  {
+    range: "60 – 100 tấn",
+    title: "Xe cẩu 60 – 100 tấn: cho dự án lớn và máy móc siêu trọng",
+    desc: "Dành cho dự án lớn, nhà máy và máy móc siêu trọng cần sức nâng, tầm với lớn.",
+    icon: Building2,
+    details: [
+      "Công việc thường gặp: dự án lớn, nhà máy, máy móc siêu trọng.",
+      "Chuẩn bị: nên báo trước để chuẩn bị xe, phụ kiện; xe lớn cần đường vào và mặt bằng rộng.",
+      "An toàn: khảo sát hiện trường và thống nhất phương án nâng trước khi thi công.",
+      "Báo giá theo trọng lượng, độ cao, tầm với và thời gian thi công thực tế.",
+    ],
+  },
 ];
 
 // Tin tức mới nhất (href là đường dẫn khi bấm vào bài)
 export const news: NewsItem[] = [
   {
+    id: 1,
     title: "Cách chọn xe cẩu đúng tải trọng cho công trình",
     excerpt: "Chọn thiếu tải gây nguy hiểm, chọn thừa tải gây tốn kém. Đây là cách tính nhanh.",
     date: "01/10/2026",
     image: "",
     href: "/tin-tuc",
+    tag: "Kinh nghiệm",
   },
   {
+    id: 2,
     title: "Cần chuẩn bị gì trước khi xe cẩu đến công trình",
     excerpt: "Mặt bằng, nền đất, đường vào và những lưu ý để buổi cẩu diễn ra suôn sẻ.",
     date: "25/09/2026",
     image: "",
     href: "/tin-tuc",
+    tag: "Cẩm nang",
   },
   {
+    id: 3,
     title: "Quy tắc an toàn khi cẩu hàng nặng",
     excerpt: "Những nguyên tắc bắt buộc để bảo vệ người, hàng hóa và thiết bị.",
     date: "15/09/2026",
     image: "",
     href: "/tin-tuc",
+    tag: "An toàn",
+  },
+  {
+    id: 4,
+    title: "Quy tắc an toàn khi cẩu hàng nặng",
+    excerpt: "Những nguyên tắc bắt buộc để bảo vệ người, hàng hóa và thiết bị.",
+    date: "15/09/2026",
+    image: "",
+    href: "/tin-tuc",
+    tag: "An toàn",
+  },
+  {
+    id: 5,
+    title: "Quy tắc an toàn khi cẩu hàng nặng",
+    excerpt: "Những nguyên tắc bắt buộc để bảo vệ người, hàng hóa và thiết bị.",
+    date: "15/09/2026",
+    image: "",
+    href: "/tin-tuc",
+    tag: "An toàn",
   },
 ];
 
 // Thông tin liên hệ hiển thị ở phần Liên hệ của trang chủ
 export const contactInfo: ContactItem[] = [
   { label: "Địa chỉ", value: "Tây Ninh (cập nhật địa chỉ thật)" },
-  { label: "Giờ làm việc", value: "Phục vụ 24/7" },
   { label: "Khu vực", value: "Tây Ninh, TP.HCM, Bình Dương, Long An" },
 ];
 

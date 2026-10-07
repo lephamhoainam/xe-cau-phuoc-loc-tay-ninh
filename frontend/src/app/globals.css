@@ -27,6 +27,7 @@
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
+  --color-success: var(--success);
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
   --radius-lg: var(--radius);
@@ -54,6 +55,7 @@
   --border: #e2dac6;
   --input: #e2dac6;
   --ring: #a67c00;
+  --success: #2f7a4d;
   --radius: 0.5rem;
 }
 
@@ -78,6 +80,7 @@
   --border: #2e2b24;
   --input: #2e2b24;
   --ring: #d4a62a;
+  --success: #5fbf84;
 }
 
 @layer base {

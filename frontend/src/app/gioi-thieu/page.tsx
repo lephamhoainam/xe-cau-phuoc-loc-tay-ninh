@@ -4,7 +4,7 @@ import PageBanner from "../../components/layouts/PageBanner";
 import AboutCompany from "../../components/about/AboutCompany";
 import BusinessList from "../../components/about/BusinessList";
 import WhyChooseUs from "../../components/about/WhyChooseUs";
-import WorkProcess from "../../components/about/WorkProcess";
+import TeamSection from "../../components/about/TeamSection";
 
 export const metadata: Metadata = {
   title: "Giới thiệu",
@@ -19,7 +19,7 @@ export default function AboutPage() {
       <AboutCompany />
       <BusinessList />
       <WhyChooseUs />
-      <WorkProcess />
+      <TeamSection />
     </>
   );
 }

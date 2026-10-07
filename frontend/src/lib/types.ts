@@ -1,3 +1,5 @@
+import { LucideIcon } from "lucide-react";
+
 export type Images = {
   hero: string;
   about: string;
@@ -21,23 +23,31 @@ export type About = {
 };
 
 export type Service = {
+  slug: string; // duy nhất, dùng làm key và sau này làm URL chi tiết
   title: string;
   desc: string;
   image: string;
+  capacity?: string; // ví dụ "5 – 100 tấn"
+  points?: string[]; // 2-3 ý nổi bật
+  href?: string; // mặc định về /dich-vu
 };
 
-export type Vehicle = {
+export type VehicleTier = {
   range: string;
-  use: string;
-  image: string;
+  title: string;
+  desc: string;
+  icon: LucideIcon;
+  details: string[];
 };
 
 export type NewsItem = {
+  id: number;
   title: string;
   excerpt: string;
   date: string;
   image: string;
   href: string;
+  tag?: string;
 };
 
 export type ContactItem = {
