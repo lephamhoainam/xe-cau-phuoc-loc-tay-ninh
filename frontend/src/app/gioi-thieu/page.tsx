@@ -1,7 +1,25 @@
-import RedirectToComingSoon from "../../components/RedirectToComingSoon";
+import type { Metadata } from "next";
+import { pages } from "../../lib/data";
+import PageBanner from "../../components/layouts/PageBanner";
+import AboutCompany from "../../components/about/AboutCompany";
+import BusinessList from "../../components/about/BusinessList";
+import WhyChooseUs from "../../components/about/WhyChooseUs";
+import WorkProcess from "../../components/about/WorkProcess";
 
-export const metadata = { robots: { index: false } };
+export const metadata: Metadata = {
+  title: "Giới thiệu",
+  description:
+    "Giới thiệu đơn vị cho thuê xe cẩu Tây Ninh từ 5 đến 100 tấn: năng lực, ngành nghề và cam kết phục vụ.",
+};
 
-export default function Page() {
-  return <RedirectToComingSoon />;
+export default function AboutPage() {
+  return (
+    <>
+      <PageBanner page={pages.gioiThieu} />
+      <AboutCompany />
+      <BusinessList />
+      <WhyChooseUs />
+      <WorkProcess />
+    </>
+  );
 }

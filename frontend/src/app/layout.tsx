@@ -3,10 +3,10 @@ import { Be_Vietnam_Pro } from "next/font/google";
 
 import "./globals.css";
 
-import ThemeProvider from "../components/ThemeProvider";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
-import FloatingContact from "../components/FloatingContact";
+import ThemeProvider from "../components/common/ThemeProvider";
+import Header from "../components/layouts/Header";
+import Footer from "../components/layouts/Footer";
+import FloatingContact from "../components/layouts/FloatingContact";
 
 const font = Be_Vietnam_Pro({
   subsets: ["vietnamese", "latin"],
@@ -26,14 +26,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="vi" className={font.variable} suppressHydrationWarning>
+    <html
+      lang="vi"
+      className={font.variable}
+      data-scroll-behavior="smooth"
+      suppressHydrationWarning
+    >
       <body className="antialiased">
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <Header />
           <main>{children}</main>
           <Footer />

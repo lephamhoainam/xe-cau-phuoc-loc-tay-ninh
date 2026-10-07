@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { nav, site } from "../lib/site";
+import { nav, site } from "../../lib/site";
 
 export default function Footer() {
   return (

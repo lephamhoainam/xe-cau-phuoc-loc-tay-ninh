@@ -3,8 +3,8 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { nav, site } from "../lib/site";
-import ThemeToggle from "./ThemeToggle";
+import { nav, site } from "../../lib/site";
+import ThemeToggle from "../common/ThemeToggle";
 
 function SearchBox({
   className = "",

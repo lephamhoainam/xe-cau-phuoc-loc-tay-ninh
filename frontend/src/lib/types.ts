@@ -44,3 +44,49 @@ export type ContactItem = {
   label: string;
   value: string;
 };
+
+export type BreadcrumbItem = {
+  label: string;
+  href?: string;
+};
+
+export type PageKey =
+  | "gioiThieu"
+  | "dichVu"
+  | "tinTuc"
+  | "lienHe"
+  | "timKiem";
+
+export type PageInfo = {
+  title: string;
+  subtitle: string;
+  breadcrumb: BreadcrumbItem[];
+};
+
+export type AboutCompany = {
+  image: string;
+  paragraphs: string[];
+  highlights: string[];
+  stats: Stat[];
+};
+
+export type Business = {
+  title: string;
+  desc: string;
+  image: string;
+};
+
+export type Reason = {
+  title: string;
+  desc: string;
+};
+
+export type Step = {
+  title: string;
+  desc: string;
+};
+
+export type Cta = {
+  title: string;
+  desc: string;
+};

@@ -5,9 +5,16 @@ import { useTheme } from "next-themes";
 export default function ThemeToggle() {
   const { resolvedTheme, setTheme } = useTheme();
 
+  const toggle = () => {
+    const root = document.documentElement;
+    root.classList.add("theme-transition");
+    setTheme(resolvedTheme === "dark" ? "light" : "dark");
+    window.setTimeout(() => root.classList.remove("theme-transition"), 350);
+  };
+
   return (
     <button
-      onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
+      onClick={toggle}
       className="flex h-9 w-9 items-center justify-center rounded-md border border-border text-foreground transition hover:border-primary hover:text-primary"
       aria-label="Đổi chế độ sáng/tối"
     >
