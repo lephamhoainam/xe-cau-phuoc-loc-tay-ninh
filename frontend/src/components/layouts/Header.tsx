@@ -1,10 +1,11 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { nav, site } from "../lib/site";
-import ThemeToggle from "./ThemeToggle";
+import { nav, site } from "../../lib/site";
+import ThemeToggle from "../common/ThemeToggle";
 
 function SearchBox({
   className = "",
@@ -62,8 +63,15 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-40 border-b border-border bg-background/95 backdrop-blur">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4">
-        <Link href="/" className="shrink-0 text-lg font-extrabold text-primary">
-          {site.name}
+        <Link href="/" className="shrink-0" aria-label={site.name}>
+          <Image
+            src="/logo/logo-van-tai-phuoc-loc-tay-ninh.png"
+            alt={site.name}
+            width={160}
+            height={48}
+            priority
+            className="h-14 w-auto"
+          />
         </Link>
 
         <nav className="hidden items-center gap-8 md:flex">

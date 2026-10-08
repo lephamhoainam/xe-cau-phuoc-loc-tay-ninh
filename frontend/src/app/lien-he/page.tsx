@@ -1,4 +1,4 @@
-import RedirectToComingSoon from "../../components/RedirectToComingSoon";
+import RedirectToComingSoon from "../../components/common/RedirectToComingSoon";
 
 export const metadata = { robots: { index: false } };
 

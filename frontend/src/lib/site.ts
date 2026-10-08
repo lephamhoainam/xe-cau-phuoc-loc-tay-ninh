@@ -14,12 +14,12 @@ export type NavItem = {
 };
 
 export const site: Site = {
-  name: "Xe Cẩu Phước Lộc",
+  name: "CÔNG TY TNHH MTV PHƯỚC LỘC TÂY NINH",
   slogan: "Cho thuê xe cẩu Tây Ninh 5 – 100 tấn",
-  phone: "0900000000",
-  phoneDisplay: "0900 000 000",
-  zalo: "0900000000",
-  address: "Tây Ninh (cập nhật địa chỉ thật)",
+  phone: "0918812084",
+  phoneDisplay: "0918 812 084",
+  zalo: "0918812084",
+  address: "Số 417 Quốc lộ 22B, Phường Hòa Thành, Tỉnh Tây Ninh, Việt Nam.",
   hours: "Phục vụ 24/7",
 };
 
