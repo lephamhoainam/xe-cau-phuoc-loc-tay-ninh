@@ -18,6 +18,7 @@ import type {
   HeroCard,
   Images,
   NewsItem,
+  GuideItem,
   PageInfo,
   PageKey,
   Reason,
@@ -597,6 +598,7 @@ export const vehicleTiers: VehicleTier[] = [
 ];
 
 // Tin tức mới nhất (href là đường dẫn khi bấm vào bài)
+export const DEFAULT_AUTHOR = "Quản trị viên";
 export const news: NewsItem[] = [
   {
     id: 1,
@@ -642,6 +644,97 @@ export const news: NewsItem[] = [
     image: "",
     href: "/tin-tuc",
     tag: "An toàn",
+  },
+  {
+    id: 6,
+    title: "Bảng giá thuê xe cẩu theo tải trọng và thời gian",
+    excerpt: "Cách tính giá theo giờ, theo ca và theo chuyến để bạn dự trù chi phí chính xác.",
+    date: "10/09/2026",
+    href: "/tin-tuc",
+    tag: "Báo giá",
+  },
+  {
+    id: 7,
+    title: "Khi nào nên thuê xe cẩu thay vì mua?",
+    excerpt: "So sánh chi phí thuê và sở hữu xe cẩu cho từng quy mô công trình.",
+    date: "05/09/2026",
+    href: "/tin-tuc",
+    tag: "Kinh nghiệm",
+  },
+  {
+    id: 8,
+    title: "Những sai lầm thường gặp khi thuê xe cẩu",
+    excerpt: "Tổng hợp các lỗi hay gặp và cách tránh để không phát sinh chi phí.",
+    date: "01/09/2026",
+    href: "/tin-tuc",
+    tag: "Cẩm nang",
+  },
+  {
+    id: 9,
+    title: "Bảo dưỡng xe cẩu định kỳ: cần kiểm tra những gì?",
+    excerpt: "Danh sách kiểm tra giúp xe cẩu vận hành ổn định và an toàn.",
+    date: "28/08/2026",
+    href: "/tin-tuc",
+    tag: "An toàn",
+  },
+];
+
+export const guides: GuideItem[] = [
+  {
+    id: 1,
+    tag: "Chuẩn bị",
+    readTime: "2 phút đọc",
+    title: "Checklist trước giờ cẩu",
+    summary: "Năm việc cần kiểm tra để buổi cẩu diễn ra suôn sẻ.",
+    points: [
+      "Xác nhận trọng lượng thực tế của vật cần cẩu.",
+      "Kiểm tra nền đất tại vị trí đặt xe, nơi chân chống tiếp đất.",
+      "Dọn dẹp mặt bằng và đường vào cho xe.",
+      "Báo trước các vật cản trên cao như dây điện, mái che.",
+      "Chuẩn bị người chỉ huy và khu vực cảnh báo xung quanh.",
+    ],
+    note: "Nên liên hệ trước ít nhất một ngày để bên cho thuê khảo sát nếu địa hình phức tạp.",
+  },
+  {
+    id: 2,
+    tag: "Kỹ thuật",
+    readTime: "2 phút đọc",
+    title: "Đọc biểu đồ tải của xe cẩu",
+    summary: "Vì sao cùng một xe nhưng tầm với xa thì cẩu được ít hơn.",
+    points: [
+      "Tải nâng tối đa chỉ áp dụng khi vật ở gần thân xe.",
+      "Tầm với càng xa, tải cho phép càng giảm.",
+      "Chiều dài cần càng lớn, tải cho phép càng giảm.",
+      "Luôn đối chiếu trọng lượng vật với biểu đồ tải ở đúng tầm với.",
+    ],
+    note: "Khi cho biết nhu cầu, hãy báo cả khoảng cách từ xe đến điểm đặt hàng.",
+  },
+  {
+    id: 3,
+    tag: "Lựa chọn",
+    readTime: "1 phút đọc", 
+    title: "Chọn đơn vị cho thuê uy tín",
+    summary: "Những điểm nên hỏi trước khi chốt thuê.",
+    points: [
+      "Xe có giấy kiểm định còn hiệu lực không.",
+      "Người vận hành có chứng chỉ phù hợp không.",
+      "Báo giá đã gồm những khoản nào, có phát sinh không.",
+      "Có bảo hiểm cho hàng hóa và công trình không.",
+    ],
+  },
+  {
+    id: 4,
+    tag: "An toàn",
+    readTime: "1 phút đọc",
+    title: "Những việc không được làm khi cẩu",
+    summary: "Các hành vi gây mất an toàn cần tránh tuyệt đối.",
+    points: [
+      "Đứng hoặc đi lại bên dưới hàng đang treo.",
+      "Cẩu quá tải hoặc kéo xiên hàng.",
+      "Cẩu khi gió mạnh hoặc tầm nhìn kém.",
+      "Tự ý ra hiệu khi không phải người chỉ huy.",
+    ],
+    note: "Mọi tín hiệu nên do một người chỉ huy duy nhất đưa ra.",
   },
 ];
 

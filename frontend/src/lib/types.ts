@@ -61,9 +61,29 @@ export type NewsItem = {
   title: string;
   excerpt: string;
   date: string;
-  image: string;
+  image?: string;
   href: string;
-  tag?: string;
+  tag: string;
+  author?: string; // mặc định "Quản trị viên"
+  readTime?: string; // vd: "5 phút đọc"
+  featured?: boolean; // đánh dấu bài nổi bật
+};
+
+export type GuideItem = {
+  id: number;
+  title: string;
+  summary: string;
+  points: string[];
+  note?: string;
+  author?: string; // mặc định "Quản trị viên"
+  tag: string;
+  readTime?: string; // vd: "2 phút đọc"
+};
+
+export type PaginationProps = {
+  currentPage: number;
+  totalPages: number;
+  onPageChange: (page: number) => void;
 };
 
 export type ContactItem = {
