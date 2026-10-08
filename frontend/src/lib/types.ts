@@ -22,14 +22,30 @@ export type About = {
   stats: Stat[];
 };
 
+export type ServiceBlock =
+  | { type: "paragraph"; text: string }
+  | { type: "list"; items: string[]; tone?: "bad" }
+  | { type: "note"; text: string }
+  | { type: "image"; src: string; alt: string; caption?: string };
+
+export type ServiceTopic = {
+  id: string;
+  title: string;
+  blocks: ServiceBlock[];
+};
+
+export type ServiceLayout = "toc" | "steps" | "grid" | "showcase";
+
 export type Service = {
-  slug: string; // duy nhất, dùng làm key và sau này làm URL chi tiết
+  slug: string;
   title: string;
   desc: string;
   image: string;
-  capacity?: string; // ví dụ "5 – 100 tấn"
-  points?: string[]; // 2-3 ý nổi bật
-  href?: string; // mặc định về /dich-vu
+  capacity?: string;
+  points: string[];
+  intro: string;
+  layout: ServiceLayout;
+  topics: ServiceTopic[];
 };
 
 export type VehicleTier = {

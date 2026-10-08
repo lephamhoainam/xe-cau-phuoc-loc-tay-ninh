@@ -1,7 +1,14 @@
-import RedirectToComingSoon from "../../components/common/RedirectToComingSoon";
+import { pages } from "../../lib/data";
+import PageBanner from "../../components/layouts/PageBanner";
+import ServicesContent from "../../components/services/ServicesContent";
 
-export const metadata = { robots: { index: false } };
+export const metadata = { title: "Dịch vụ" };
 
-export default function Page() {
-  return <RedirectToComingSoon />;
+export default function ServicesPage() {
+  return (
+    <>
+      <PageBanner page={pages.dichVu} />
+      <ServicesContent />
+    </>
+  );
 }

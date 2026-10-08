@@ -6,6 +6,7 @@ import EmptyState from "../common/EmptyState";
 import Photo from "../common/Photo";
 import Section from "../common/Section";
 import SectionTitle from "../common/SectionTitle";
+import ServiceLink from "../services/ServiceLink";
 
 export default function ServicesSection({ limit }: { limit?: number }) {
   const list = limit ? services.slice(0, limit) : services;
@@ -37,9 +38,9 @@ export default function ServicesSection({ limit }: { limit?: number }) {
       ) : (
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {list.map((s) => (
-            <Link
+            <ServiceLink
               key={s.slug}
-              href={s.href ?? "/dich-vu"}
+              slug={s.slug}
               className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-card transition duration-200 hover:-translate-y-1 hover:border-primary"
             >
               <div className="relative aspect-[16/10] overflow-hidden">
@@ -82,7 +83,7 @@ export default function ServicesSection({ limit }: { limit?: number }) {
                   </div>
                 </div>
               </div>
-            </Link>
+            </ServiceLink>
           ))}
 
           {/* Ô kêu gọi cuối lưới */}

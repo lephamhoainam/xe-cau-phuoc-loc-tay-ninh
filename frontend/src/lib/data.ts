@@ -117,6 +117,75 @@ export const services: Service[] = [
       "Tư vấn đúng tải trọng cần thuê",
       "Báo giá rõ ràng trước khi triển khai",
     ],
+    intro:
+      "Thuê xe cẩu linh hoạt theo giờ, ca, ngày hoặc tháng, tải trọng từ 5 đến 100 tấn. Chúng tôi tư vấn đúng loại xe để bạn không thuê thiếu tải hay thừa tải.",
+    layout: "toc",
+    topics: [
+      {
+        id: "hinh-thuc-thue",
+        title: "Các hình thức thuê",
+        blocks: [
+          { type: "paragraph", text: "Tùy khối lượng công việc, bạn chọn hình thức thuê phù hợp để tối ưu chi phí." },
+          {
+            type: "list",
+            items: [
+              "Theo giờ: việc nhỏ, cẩu nhanh một vài cấu kiện hoặc thiết bị.",
+              "Theo ca: nửa ngày hoặc một ca làm việc cho công việc vừa.",
+              "Theo ngày: công trình cần cẩu liên tục trong ngày.",
+              "Theo tháng: dự án dài ngày, cần xe cẩu thường xuyên tại công trường.",
+            ],
+          },
+          { type: "image", src: "", alt: "Xe cẩu làm việc tại công trình", caption: "Xe cẩu làm việc tại công trình" },
+        ],
+      },
+      {
+        id: "chon-tai-trong",
+        title: "Chọn tải trọng phù hợp",
+        blocks: [
+          { type: "paragraph", text: "Chọn thiếu tải gây nguy hiểm, chọn thừa tải gây tốn kém. Dưới đây là cách phân nhóm thường dùng." },
+          {
+            type: "list",
+            items: [
+              "5 – 25 tấn: linh hoạt cho việc nhỏ và vừa, từ máy móc nhỏ, vật tư, biển quảng cáo, hạ cây đến lắp kết cấu thép nhà xưởng.",
+              "30 – 50 tấn: cho cấu kiện bê tông, cột điện và thiết bị nặng ở công trình, nhà máy.",
+              "60 – 100 tấn: cho dự án lớn, nhà máy và máy móc siêu trọng cần sức nâng, tầm với lớn.",
+            ],
+          },
+          { type: "note", text: "Sức nâng của xe giảm dần khi tầm với xa ra. Hãy báo cho chúng tôi cả trọng lượng hàng lẫn khoảng cách cần cẩu để chọn đúng xe." },
+        ],
+      },
+      {
+        id: "bao-gia",
+        title: "Báo giá được tính thế nào",
+        blocks: [
+          { type: "paragraph", text: "Giá thuê phụ thuộc vào loại xe, thời gian thi công thực tế và quãng đường di chuyển. Chúng tôi báo giá rõ ràng trước khi triển khai. Khi gọi, bạn chỉ cần chuẩn bị:" },
+          {
+            type: "list",
+            items: [
+              "Trọng lượng và kích thước hàng cần cẩu",
+              "Khoảng cách từ vị trí đặt xe đến chỗ đặt hàng",
+              "Thời gian thi công dự kiến",
+              "Địa điểm công trình",
+            ],
+          },
+        ],
+      },
+      {
+        id: "quyen-loi",
+        title: "Khi thuê, bạn nhận được",
+        blocks: [
+          {
+            type: "list",
+            items: [
+              "Tư vấn chọn tải trọng và tầm với phù hợp",
+              "Người vận hành có kinh nghiệm",
+              "Báo giá rõ ràng trước khi triển khai",
+              "Hỗ trợ khảo sát vị trí đặt xe khi cần",
+            ],
+          },
+        ],
+      },
+    ],
   },
   {
     slug: "cau-lap-may-moc",
@@ -124,9 +193,157 @@ export const services: Service[] = [
     desc: "Hạ và lắp đặt máy móc, thiết bị nhà xưởng chính xác, an toàn.",
     image: "",
     points: [
-      "Khảo sát mặt bằng và đường vào trước khi cẩu",
+      "Khảo sát lối vào và mặt bằng trước khi cẩu",
+      "Chọn đúng xe và điểm móc theo từng loại máy",
       "Đặt máy đúng vị trí, hạn chế va chạm",
       "Phù hợp cả mặt bằng chật hẹp",
+    ],
+    intro:
+      "Nâng, hạ và đặt máy móc, thiết bị vào đúng vị trí trong nhà xưởng bằng xe cẩu, kể cả mặt bằng chật hẹp, cửa nhỏ hay nhà xưởng đã lợp mái. Chúng tôi khảo sát trước, chọn đúng xe và cách nâng để máy không bị va đập, hư hại.",
+    layout: "steps",
+    topics: [
+      {
+        id: "tiep-nhan",
+        title: "Tiếp nhận thông tin",
+        blocks: [
+          {
+            type: "paragraph",
+            text: "Mỗi máy có hình dạng, trọng lượng và trọng tâm khác nhau, nên việc đầu tiên là nắm rõ máy cần cẩu. Chỉ cần vài thông tin cơ bản là chúng tôi đã có thể tư vấn sơ bộ về loại xe và cách làm.",
+          },
+          {
+            type: "list",
+            items: [
+              "Loại máy, kích thước (dài, rộng, cao) và trọng lượng",
+              "Vị trí máy đang đứng và vị trí cần đặt",
+              "Bản vẽ hoặc sơ đồ mặt bằng xưởng nếu có",
+              "Thời gian bạn muốn thực hiện",
+            ],
+          },
+          {
+            type: "paragraph",
+            text: "Nếu chưa nắm rõ trọng lượng, bạn gửi tên model hoặc ảnh nhãn máy, thông số thường có trên nhãn hoặc trong tài liệu của nhà sản xuất.",
+          },
+        ],
+      },
+      {
+        id: "khao-sat",
+        title: "Khảo sát hiện trường",
+        blocks: [
+          {
+            type: "paragraph",
+            text: "Với máy móc, khó khăn thường nằm ở chỗ đưa máy vào xưởng chứ không phải ở việc nâng. Vì vậy chúng tôi đến xem trực tiếp những điểm sau trước khi chốt phương án.",
+          },
+          {
+            type: "list",
+            items: [
+              "Lối vào: cửa xưởng, cổng, độ cao mái che và khoảng trống mà xe cần đi qua",
+              "Nền đất: độ chắc và độ phẳng ở chỗ đặt chân chống xe cẩu",
+              "Trên cao: đường dây điện, dầm cầu trục, mái, đường ống",
+              "Vị trí đặt máy: bệ máy, bu lông neo và khoảng trống xung quanh",
+            ],
+          },
+          {
+            type: "note",
+            text: "Với mặt bằng chật hẹp, khảo sát là bước quyết định việc có cẩu được hay không và cẩu bằng cách nào.",
+          },
+        ],
+      },
+      {
+        id: "phuong-an",
+        title: "Lên phương án cẩu",
+        blocks: [
+          {
+            type: "paragraph",
+            text: "Từ thông tin và kết quả khảo sát, chúng tôi chọn xe cẩu và cách nâng sao cho máy đi đúng đường, không chạm vào tường, dầm hay thiết bị khác.",
+          },
+          {
+            type: "list",
+            items: [
+              "Chọn xe: dựa trên trọng lượng máy, tầm với và độ cao cần nâng, không chọn thừa tải gây tốn kém",
+              "Điểm móc: nâng ở các vị trí nhà sản xuất cho phép, không móc vào chi tiết dễ biến dạng",
+              "Cáp và phụ kiện: chọn cáp, dây cẩu, khóa phù hợp tải, có đệm bảo vệ ở góc cạnh của máy",
+              "Hướng đi: tính trước đường nâng, xoay và hạ để máy luôn có khoảng cách an toàn",
+            ],
+          },
+          {
+            type: "paragraph",
+            text: "Với máy dài hoặc lệch tâm, có thể dùng dầm cân bằng hoặc móc nhiều điểm để máy được nâng lên thăng bằng.",
+          },
+          {
+            type: "note",
+            text: "Nếu cửa xưởng quá nhỏ hoặc nhà đã lợp mái, tùy trường hợp có thể phải cẩu qua khoảng hở khác của xưởng hoặc tháo tạm một phần vách, mái để đưa máy vào.",
+          },
+        ],
+      },
+      {
+        id: "chuan-bi",
+        title: "Chuẩn bị hiện trường",
+        blocks: [
+          {
+            type: "paragraph",
+            text: "Trước ngày cẩu, hiện trường cần sẵn sàng để việc nâng diễn ra liên tục và an toàn. Phần lớn việc này chúng tôi hướng dẫn và cùng thực hiện với bạn.",
+          },
+          {
+            type: "list",
+            items: [
+              "Dọn lối đi và khu vực đặt xe, di dời vật cản",
+              "Trải tấm lót dưới chân chống nếu nền đất yếu",
+              "Rào khu vực cẩu, không để người đứng dưới tải",
+              "Chuẩn bị sẵn bệ máy, bu lông neo hoặc vị trí đặt máy",
+            ],
+          },
+          {
+            type: "note",
+            text: "Gió lớn hoặc mưa to có thể phải hoãn việc cẩu để bảo đảm an toàn cho người và máy.",
+          },
+        ],
+      },
+      {
+        id: "cau-dat",
+        title: "Cẩu và đặt máy",
+        blocks: [
+          {
+            type: "paragraph",
+            text: "Máy được nâng từ từ, kiểm tra thăng bằng ở độ cao thấp trước khi nâng hẳn. Trong suốt quá trình cẩu chỉ có một người ra hiệu, phối hợp trực tiếp với người vận hành xe cẩu để tránh hiểu nhầm tín hiệu.",
+          },
+          {
+            type: "list",
+            items: [
+              "Nâng thử: nâng cách mặt đất một đoạn ngắn để kiểm tra cáp, móc và độ thăng bằng",
+              "Di chuyển: nâng, xoay và hạ chậm, giữ máy cách xa vật cản",
+              "Hạ máy: hạ lên bệ hoặc tấm kê, canh theo vị trí đã đánh dấu",
+              "Căn chỉnh: khi cần, dùng con lăn hoặc kích để đẩy máy vào đúng vị trí cuối",
+            ],
+          },
+          {
+            type: "paragraph",
+            text: "Các loại thiết bị thường cẩu gồm máy ép, máy dập, máy CNC, máy phát điện, máy nén khí, bồn bể, tủ điện và các thiết bị trong dây chuyền sản xuất.",
+          },
+        ],
+      },
+      {
+        id: "ban-giao",
+        title: "Kiểm tra, bàn giao",
+        blocks: [
+          {
+            type: "paragraph",
+            text: "Sau khi hạ máy, chúng tôi cùng bạn kiểm tra vị trí và tình trạng bên ngoài của máy rồi mới thu dọn hiện trường.",
+          },
+          {
+            type: "list",
+            items: [
+              "Máy nằm đúng vị trí đã đánh dấu",
+              "Bề mặt máy không bị trầy xước hay móp méo do quá trình cẩu",
+              "Chân chống và tấm lót được thu dọn",
+              "Mặt bằng sạch, lối đi thông thoáng như ban đầu",
+            ],
+          },
+          {
+            type: "note",
+            text: "Việc cân chỉnh chính xác, đấu điện và chạy thử máy thường do kỹ thuật của nhà sản xuất hoặc nhà máy của bạn thực hiện. Chúng tôi lo phần nâng và đặt máy vào đúng vị trí.",
+          },
+        ],
+      },
     ],
   },
   {
@@ -139,8 +356,101 @@ export const services: Service[] = [
       "Cẩu cấu kiện bê tông đúc sẵn",
       "Thi công theo quy tắc an toàn lao động",
     ],
+    intro:
+      "Cẩu và lắp dựng khung thép nhà xưởng, cột điện, trạm biến áp và cấu kiện bê tông đúc sẵn cho công trình, nhà máy. Cấu kiện dài, nặng và cồng kềnh nên chúng tôi tính trước xe, điểm móc và trình tự nâng để cấu kiện vào đúng vị trí, an toàn cho người và công trình.",
+    layout: "grid",
+    topics: [
+      {
+        id: "hang-muc",
+        title: "Các hạng mục cẩu",
+        blocks: [
+          {
+            type: "paragraph",
+            text: "Chúng tôi nhận cẩu những cấu kiện nặng và dài mà sức người hoặc xe tải thông thường không đưa lên cao hay vào đúng vị trí được. Thường gặp nhất là bốn nhóm sau.",
+          },
+          {
+            type: "list",
+            items: [
+              "Khung thép nhà xưởng: cẩu cột, kèo, dầm thép cho nhà xưởng, nhà tiền chế, kho bãi",
+              "Cột điện: dựng mới hoặc thay cột điện bê tông, cột thép",
+              "Trạm biến áp: đưa máy biến áp, tủ điện và thiết bị trạm vào bệ",
+              "Bê tông đúc sẵn: cẩu dầm, cọc, tấm panel từ xe xuống vị trí lắp",
+            ],
+          },
+        ],
+      },
+      {
+        id: "phuong-an",
+        title: "Chọn xe và cách nâng",
+        blocks: [
+          {
+            type: "paragraph",
+            text: "Xe cẩu được chọn theo cấu kiện nặng nhất ở tầm với xa nhất, vì sức nâng của xe giảm khi tầm với tăng. Cách móc cáp cũng quyết định cấu kiện có được nâng thăng bằng, không bị cong hay hư hại hay không.",
+          },
+          {
+            type: "list",
+            items: [
+              "Cấu kiện dài: móc từ hai điểm trở lên, có thể dùng dầm cân bằng để nâng ngang thăng bằng",
+              "Cột thép, cột điện: lật từ nằm sang đứng rồi mới nâng vào chân cột",
+              "Cáp và phụ kiện: chọn cáp, khóa phù hợp tải, có đệm ở góc cạnh để không làm hỏng lớp sơn hoặc mạ",
+              "Chân chống: đặt trên nền chắc, trải tấm lót khi nền đất yếu",
+            ],
+          },
+          {
+            type: "note",
+            text: "Để chọn đúng xe, bạn cho chúng tôi biết trọng lượng cấu kiện nặng nhất, chiều dài, độ cao cần lắp và khoảng cách từ chỗ đặt xe đến chỗ lắp. Có bản vẽ hoặc trình tự lắp dựng thì gửi kèm.",
+          },
+        ],
+      },
+      {
+        id: "trinh-tu",
+        title: "Trình tự lắp dựng",
+        blocks: [
+          {
+            type: "paragraph",
+            text: "Khung thép được dựng theo thứ tự để kết cấu luôn ổn định ở từng giai đoạn. Chúng tôi cẩu theo trình tự này, phối hợp với đội lắp dựng của bạn.",
+          },
+          {
+            type: "list",
+            items: [
+              "Cột trước: nâng cột vào chân cột, giữ thẳng đứng đến khi cố định",
+              "Dầm và kèo: nâng lên, đặt vào liên kết và giữ cho đến khi đội lắp dựng cố định",
+              "Giằng, xà gồ: cẩu theo từng bó nhỏ để thợ lắp dễ thao tác trên cao",
+              "Nhả cáp: chỉ tháo cáp khi cấu kiện đã được cố định chắc chắn",
+            ],
+          },
+          {
+            type: "note",
+            text: "Chúng tôi lo phần cẩu và đưa cấu kiện vào vị trí. Việc bắt bu lông, hàn và hoàn thiện kết cấu do đội thi công của bạn thực hiện.",
+          },
+        ],
+      },
+      {
+        id: "an-toan",
+        title: "An toàn lao động",
+        blocks: [
+          {
+            type: "paragraph",
+            text: "Mọi hạng mục đều làm theo quy tắc an toàn khi cẩu hàng nặng, đặc biệt cẩn thận với cột điện và trạm biến áp nằm sát đường dây.",
+          },
+          {
+            type: "list",
+            items: [
+              "Kiểm tra trước ca: kiểm tra cáp, móc, khóa và chân chống trước mỗi ca làm việc",
+              "Rào khu vực: rào và cấm người đứng hay đi lại dưới tải, trong tầm xoay của cần",
+              "Đúng tải: cẩu đúng tải trọng và tầm với, chỉ một người ra hiệu cho người vận hành",
+              "Gần dây điện: khảo sát đường dây trước, giữ khoảng cách an toàn, phối hợp cắt điện khi cần",
+            ],
+          },
+          {
+            type: "note",
+            text: "Công trình sát đường dây mà không giữ được khoảng cách an toàn thì phải cắt điện trước khi cẩu. Gió lớn, mưa to hoặc tầm nhìn kém có thể phải tạm dừng cẩu.",
+          },
+        ],
+      },
+    ],
   },
-  {
+    {
     slug: "van-chuyen-kem-cau",
     title: "Vận chuyển kèm cẩu",
     desc: "Chở và cẩu hàng nặng trọn gói, không cần thuê nhiều đơn vị.",
@@ -149,6 +459,100 @@ export const services: Service[] = [
       "Một đầu mối cho cả vận chuyển và cẩu",
       "Tiết kiệm thời gian phối hợp",
       "Giao hàng thẳng đến vị trí thi công",
+    ],
+    intro:
+      "Chở hàng nặng đến công trình và cẩu hạ đúng vị trí chỉ với một đơn vị. Bạn không phải liên hệ riêng xe chở và xe cẩu, không phải tự phối hợp giờ giấc, hàng được giao thẳng đến chỗ cần đặt thay vì dừng ở cổng hay ngoài đường.",
+    layout: "showcase",
+    topics: [
+      {
+        id: "tron-goi",
+        title: "Dịch vụ trọn gói",
+        blocks: [
+          {
+            type: "paragraph",
+            text: "Với hàng nặng, việc chở đến nơi mới làm được một nửa, nửa còn lại là đưa hàng xuống và đặt đúng chỗ. Chúng tôi lo cả hai khâu, bố trí xe chở và xe cẩu phù hợp với hàng của bạn.",
+          },
+          {
+            type: "list",
+            items: [
+              "Một đầu mối: chỉ làm việc với một đơn vị cho cả vận chuyển và cẩu",
+              "Tiết kiệm thời gian: xe chở và xe cẩu được phối hợp, không phải chờ nhau",
+              "Giao tận nơi: hàng được hạ thẳng đến vị trí thi công",
+              "Báo giá trọn gói: một báo giá cho cả chở và cẩu, rõ ràng trước khi làm",
+            ],
+          },
+        ],
+      },
+      {
+        id: "hang-hoa",
+        title: "Hàng nhận chở và cẩu",
+        blocks: [
+          {
+            type: "paragraph",
+            text: "Dịch vụ phù hợp với những loại hàng nặng, cồng kềnh mà bốc xếp thủ công hoặc xe tải thông thường không xử lý được. Thường gặp nhất là bốn nhóm sau.",
+          },
+          {
+            type: "list",
+            items: [
+              "Máy móc, thiết bị: máy ép, máy dập, máy phát điện, bồn bể, tủ điện",
+              "Kết cấu thép: cột, kèo, dầm thép, khung thép chế tạo sẵn",
+              "Cấu kiện bê tông: dầm, cọc, tấm panel bê tông đúc sẵn",
+              "Vật tư nặng: vật tư, thiết bị cồng kềnh cho công trình, nhà máy",
+            ],
+          },
+          {
+            type: "note",
+            text: "Hàng quá khổ hoặc quá tải có thể cần giấy phép lưu hành và tuyến đường riêng. Bạn báo trước kích thước, trọng lượng để chúng tôi tư vấn từ đầu.",
+          },
+        ],
+      },
+      {
+        id: "quy-trinh",
+        title: "Quy trình thực hiện",
+        blocks: [
+          {
+            type: "paragraph",
+            text: "Công việc đi theo một mạch từ lúc nhận yêu cầu đến lúc hàng nằm đúng chỗ, để bạn không phải theo dõi từng khâu.",
+          },
+          {
+            type: "list",
+            items: [
+              "Nhận yêu cầu: bạn cho biết loại hàng, trọng lượng, nơi lấy hàng và nơi giao",
+              "Chốt phương án: chọn xe chở, xe cẩu và báo giá trọn gói trước khi làm",
+              "Chở hàng: vận chuyển hàng đến công trình đúng thời gian đã hẹn",
+              "Cẩu hạ: cẩu hàng xuống và đặt đúng vị trí cần lắp hoặc để hàng",
+            ],
+          },
+          {
+            type: "note",
+            text: "Điểm giao hàng cần đường vào đủ rộng cho xe chở và chỗ đặt chân chống phẳng, chắc cho xe cẩu. Nếu chưa chắc, chúng tôi khảo sát giúp trước khi chở.",
+          },
+        ],
+      },
+      {
+        id: "so-sanh",
+        title: "So với thuê riêng",
+        blocks: [
+          {
+            type: "paragraph",
+            text: "Nếu thuê xe chở và xe cẩu ở hai đơn vị khác nhau, bạn thường phải tự xử lý những việc sau.",
+          },
+          {
+            type: "list",
+            tone: "bad",
+            items: [
+              "Làm việc với hai đơn vị, hai đầu mối, hai báo giá",
+              "Tự phối hợp giờ giấc giữa xe chở và xe cẩu",
+              "Dễ phải chờ nhau, phát sinh thêm thời gian và chi phí",
+              "Nếu có sự cố, khó xác định đơn vị nào chịu trách nhiệm",
+            ],
+          },
+          {
+            type: "note",
+            text: "Làm trọn gói với một đơn vị giúp các việc trên được phối hợp sẵn, bạn chỉ cần theo dõi một đầu mối.",
+          },
+        ],
+      },
     ],
   },
 ];
