@@ -8,7 +8,6 @@
 // =====================================================================
 
 import { Truck, Factory, Building2 } from "lucide-react";
-import type { LucideIcon } from "lucide-react";
 
 import type {
   About,
@@ -25,6 +24,7 @@ import type {
   Service,
   Step,
   VehicleTier,
+  FaqItem,
 } from "./types";
 
 // =====================================================================
@@ -243,8 +243,8 @@ export const news: NewsItem[] = [
 
 // Thông tin liên hệ hiển thị ở phần Liên hệ của trang chủ
 export const contactInfo: ContactItem[] = [
-  { label: "Địa chỉ", value: "Tây Ninh (cập nhật địa chỉ thật)" },
-  { label: "Khu vực", value: "Tây Ninh, TP.HCM, Bình Dương, Long An" },
+  { label: "Địa chỉ", value: "Số 417 Quốc lộ 22B, Phường Hòa Thành, Tỉnh Tây Ninh, Việt Nam." },
+  { label: "Khu vực", value: "Tây Ninh, TP.HCM, Bình Dương, Long An và các tỉnh lân cận." },
 ];
 
 // =====================================================================
@@ -303,3 +303,43 @@ export const aboutCta: Cta = {
   title: "Cần thuê xe cẩu? Liên hệ ngay để được tư vấn",
   desc: "Cho chúng tôi biết tải trọng, địa điểm và thời gian, chúng tôi phản hồi nhanh nhất có thể.",
 };
+
+// Section 7: Câu hỏi thường gặp (FAQ)
+export const faqs: FaqItem[] = [
+  {
+    id: 1,
+    question: "Làm sao biết nên thuê xe cẩu bao nhiêu tấn?",
+    answer:
+      "Bạn cho chúng tôi biết trọng lượng, kích thước hàng và khoảng cách từ xe đến vị trí cần đặt. Đội kỹ thuật sẽ tính tải trọng và tầm với phù hợp để không thiếu tải, cũng không tốn kém thừa.",
+  },
+  {
+    id: 2,
+    question: "Báo giá thuê xe cẩu được tính như thế nào?",
+    answer:
+      "Giá phụ thuộc vào loại xe, trọng lượng và tầm với, thời gian thi công thực tế và quãng đường di chuyển. Bạn liên hệ để được báo giá cụ thể cho từng công việc.",
+  },
+  {
+    id: 3,
+    question: "Có cần khảo sát công trình trước khi cẩu không?",
+    answer:
+      "Nên có, nhất là với công việc nặng hoặc mặt bằng chật. Khảo sát giúp xác định vị trí đặt xe, đường vào, nền đất và đường dây điện trên cao để buổi cẩu an toàn.",
+  },
+  {
+    id: 4,
+    question: "Mặt bằng cần chuẩn bị gì trước khi xe đến?",
+    answer:
+      "Cần chỗ đặt chân chống phẳng và đủ chắc, đường vào đủ rộng cho xe. Nếu nền đất yếu, chúng tôi sẽ trải thêm tấm lót để tránh lún.",
+  },
+  {
+    id: 5,
+    question: "Đặt xe trước bao lâu thì được điều xe?",
+    answer:
+      "Bạn nên liên hệ sớm để chúng tôi sắp xếp xe và người vận hành. Với việc gấp, hãy gọi trực tiếp để được hỗ trợ nhanh nhất có thể.",
+  },
+  {
+    id: 6,
+    question: "Đội ngũ vận hành và an toàn lao động ra sao?",
+    answer:
+      "Xe do người vận hành có kinh nghiệm điều khiển, tuân thủ quy trình an toàn khi cẩu hàng nặng. Xe được kiểm tra thường xuyên trước mỗi ca làm việc.",
+  },
+];

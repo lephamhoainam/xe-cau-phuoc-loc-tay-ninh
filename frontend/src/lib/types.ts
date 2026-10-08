@@ -100,3 +100,9 @@ export type Cta = {
   title: string;
   desc: string;
 };
+
+export type FaqItem = {
+  id: number;
+  question: string;
+  answer: string;
+};

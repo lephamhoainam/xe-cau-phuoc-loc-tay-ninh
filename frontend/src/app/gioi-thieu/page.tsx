@@ -5,6 +5,8 @@ import AboutCompany from "../../components/about/AboutCompany";
 import BusinessList from "../../components/about/BusinessList";
 import WhyChooseUs from "../../components/about/WhyChooseUs";
 import TeamSection from "../../components/about/TeamSection";
+import FaqSection from "../../components/about/FaqSection";
+import ContactSection from "../../components/home/ContactSection";
 
 export const metadata: Metadata = {
   title: "Giới thiệu",
@@ -20,6 +22,8 @@ export default function AboutPage() {
       <BusinessList />
       <WhyChooseUs />
       <TeamSection />
+      <FaqSection />
+      <ContactSection />
     </>
   );
 }
