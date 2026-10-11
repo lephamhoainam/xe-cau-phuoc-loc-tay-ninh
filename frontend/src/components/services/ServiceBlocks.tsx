@@ -1,6 +1,7 @@
 import { Check, X } from "lucide-react";
 import type { ServiceBlock } from "../../lib/types";
 import Photo from "../common/Photo";
+import ImageGallery from "../common/ImageGallery";
 
 type Props = { blocks: ServiceBlock[]; variant?: "plain" | "tiles" };
 
@@ -124,7 +125,18 @@ export default function ServiceBlocks({ blocks, variant = "plain" }: Props) {
                 )}
               </figure>
             );
-        }
+          case "gallery":
+            return (
+              <figure key={i}>
+                <ImageGallery images={b.images} className="aspect-[16/9]" />
+                {b.caption && (
+                  <figcaption className="mt-2 text-xs text-muted-foreground">
+                    {b.caption}
+                  </figcaption>
+                )}
+              </figure>
+            );
+          }
       })}
     </div>
   );

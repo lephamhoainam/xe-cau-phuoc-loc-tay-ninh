@@ -1,7 +1,7 @@
 import { Check, Phone, Weight } from "lucide-react";
 import { site } from "../../lib/site";
 import type { Service } from "../../lib/types";
-import Photo from "../common/Photo";
+import ImageGallery from "../common/ImageGallery";
 import Section from "../common/Section";
 
 export default function ServiceHero({ service }: { service: Service }) {
@@ -35,14 +35,10 @@ export default function ServiceHero({ service }: { service: Service }) {
           </a>
         </div>
 
-        <div className="relative aspect-[4/3] overflow-hidden rounded-xl">
-          <Photo
-            src={service.image}
-            alt={service.title}
-            className="absolute inset-0 h-full w-full"
-          />
+        <div className="relative">
+          <ImageGallery images={service.images} priority className="aspect-[4/3] h-[420px]" />
           {service.capacity && (
-            <span className="absolute left-3 top-3 inline-flex items-center gap-1.5 rounded-md bg-card/90 px-3 py-1 text-xs font-bold backdrop-blur">
+            <span className="absolute left-3 top-3 z-10 inline-flex items-center gap-1.5 rounded-md bg-card/90 px-3 py-1 text-xs font-bold backdrop-blur">
               <Weight className="h-3.5 w-3.5 text-primary" />
               {service.capacity}
             </span>

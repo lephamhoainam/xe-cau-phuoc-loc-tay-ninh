@@ -34,53 +34,51 @@
   --radius-xl: calc(var(--radius) * 1.4);
 }
 
-/* ===== CHẾ ĐỘ SÁNG: muốn đổi màu thì sửa ở đây ===== */
 :root {
-  --background: #faf7f0; /* nền chính (kem) */
-  --foreground: #1a1a1a; /* chữ chính */
-  --card: #ffffff; /* nền thẻ */
-  --card-foreground: #1a1a1a;
+  --background: #f6f7f9; /* xám trắng trung tính */
+  --foreground: #1c1f26;
+  --card: #ffffff;
+  --card-foreground: #1c1f26;
   --popover: #ffffff;
-  --popover-foreground: #1a1a1a;
-  --primary: #a67c00; /* vàng đồng (đậm để dễ đọc trên nền sáng) */
-  --primary-foreground: #ffffff; /* chữ trên nền vàng */
-  --primary-hover: #8c6700;
-  --secondary: #efe9da;
-  --secondary-foreground: #1a1a1a;
-  --muted: #f1ecdf; /* nền xen kẽ giữa các khối */
-  --muted-foreground: #6b655a; /* chữ phụ */
-  --accent: #efe9da;
-  --accent-foreground: #1a1a1a;
+  --popover-foreground: #1c1f26;
+  --primary: #d68a00; /* vàng hổ phách */
+  --primary-foreground: #1c1f26; /* chữ tối trên nền vàng cho dễ đọc */
+  --primary-hover: #b87400;
+  --secondary: #eceef2;
+  --secondary-foreground: #1c1f26;
+  --muted: #eff1f4;
+  --muted-foreground: #5f6673;
+  --accent: #eceef2;
+  --accent-foreground: #1c1f26;
   --destructive: #d92d20;
-  --border: #e2dac6;
-  --input: #e2dac6;
-  --ring: #a67c00;
-  --success: #2f7a4d;
+  --border: #e0e3e9;
+  --input: #e0e3e9;
+  --ring: #d68a00;
+  --success: #1f8a5b;
   --radius: 0.5rem;
 }
 
-/* ===== CHẾ ĐỘ TỐI ===== */
 .dark {
-  --background: #0e0e0e;
-  --foreground: #f5f1e8;
-  --card: #1a1a1a;
-  --card-foreground: #f5f1e8;
-  --popover: #1a1a1a;
-  --popover-foreground: #f5f1e8;
-  --primary: #d4a62a;
-  --primary-foreground: #0e0e0e;
-  --primary-hover: #e6bb45;
-  --secondary: #222222;
-  --secondary-foreground: #f5f1e8;
-  --muted: #151515;
-  --muted-foreground: #a8a299;
-  --accent: #222222;
-  --accent-foreground: #f5f1e8;
-  --destructive: #e5484d;
-  --border: #2e2b24;
-  --input: #2e2b24;
-  --ring: #d4a62a;
-  --success: #5fbf84;
+  --background: #26241f; /* xám than ấm, không đen */
+  --foreground: #efebe3;
+  --card: #322f29;
+  --card-foreground: #efebe3;
+  --popover: #322f29;
+  --popover-foreground: #efebe3;
+  --primary: #e0a526; /* vàng mật ong, dịu hơn */
+  --primary-foreground: #26241f;
+  --primary-hover: #eebb4a;
+  --secondary: #3d3a33;
+  --secondary-foreground: #efebe3;
+  --muted: #2c2a25;
+  --muted-foreground: #a9a396;
+  --accent: #3d3a33;
+  --accent-foreground: #efebe3;
+  --destructive: #e5645f;
+  --border: #46423a;
+  --input: #46423a;
+  --ring: #e0a526;
+  --success: #5cb88a;
 }
 
 @layer base {

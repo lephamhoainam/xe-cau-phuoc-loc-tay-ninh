@@ -1,13 +1,17 @@
 // =====================================================================
 // DỮ LIỆU MẪU (MOCK DATA) CỦA WEBSITE
 // ---------------------------------------------------------------------
-// - Mọi nội dung chữ và link ảnh đều nằm trong file này.
+// - Mọi nội dung chữ nằm trong file này.
+// - TOÀN BỘ ẢNH nằm ở object GALLERY ngay bên dưới (đầu file).
+//   Muốn thêm hay đổi ảnh thì chỉ sửa ở GALLERY, không cần sửa chỗ khác.
 // - Kiểu dữ liệu (type) khai báo ở ./types.ts.
 // - Sau này có backend (be) thì thay bằng dữ liệu gọi từ API,
 //   giữ nguyên kiểu để các trang không phải sửa.
 // =====================================================================
 
 import { Truck, Factory, Building2 } from "lucide-react";
+import { site } from "./site";
+import { gallery, cover } from "./gallery";
 
 import type {
   About,
@@ -26,19 +30,108 @@ import type {
   Step,
   VehicleTier,
   FaqItem,
+  ContactIntro,
+  ContactDetail,
 } from "./types";
 
 // =====================================================================
-// 1. ẢNH CHUNG
-// Dán link Unsplash vào các chỗ "" bên dưới.
-// Để trống "" thì web hiện khung "Chưa có ảnh".
-// Nên dùng link dạng:
-// https://images.unsplash.com/photo-xxxx?auto=format&fit=crop&w=1200&q=80
+// 0. TOÀN BỘ ẢNH (CHỈ SỬA Ở ĐÂY)
+// Muốn thêm ảnh cho khối nào: thêm 1 dòng tên file vào mảng của khối đó.
+// Muốn alt riêng cho 1 ảnh: { file: "ten.jpg", alt: "mô tả riêng" }
+// Mảng rỗng [] thì web hiện "Chưa có ảnh". Ảnh để trong public/assets.
 // =====================================================================
+export const GALLERY = {
+  // ---- Trang chủ ----
+  hero: gallery("Đội xe cẩu 5 – 100 tấn tại Tây Ninh", [
+    "he-thong-xe-tai-5-tan-100-tan.jpg",
+  ]),
+  about: gallery("Vận chuyển hàng nặng kèm cẩu tại Tây Ninh", [
+    "van-chuyen-hang-kem-cau.jpg",
+  ]),
+  contact: gallery("Liên hệ thuê xe cẩu tại Tây Ninh", []),
+
+  // ---- Dịch vụ ----
+  serviceChoThueXeCau: gallery("Dịch vụ cho thuê xe cẩu tại Tây Ninh", [
+    "gioi-thieu-cong-ty-phuoc-loc.jpg",
+    "cho-thue-xe-cau.jpg",
+  ]),
+  serviceCauLapMayMoc: gallery("Cẩu lắp đặt máy móc nhà xưởng", [
+    "cau-lap-may-moc-nha-xuong.jpg",
+    "cau-lap-may-moc-01.jpg",
+    "van-chuyen-kem-cau.jpg",
+  ]),
+  serviceCauKetCauThep: gallery("Cẩu dựng kết cấu thép công trình", [
+    "cau-ket-cau-thep-cong-trinh-01.jpg",
+    "cau-ket-cau-thep-cong-trinh.jpg",
+    "cau-ket-cau-thep-cong-trinh-03.jpg",
+    "cau-ket-cau-thep-cong-trinh-02.jpg",
+    "cau-ket-cau-thep-cong-trinh-04.jpg",
+  ]),
+  serviceVanChuyenKemCau: gallery("Vận chuyển hàng nặng kèm cẩu", [
+    "van-chuyen-kem-cau.jpg",
+    "van-chuyen-kem-cau-03.jpg",
+  ]),
+
+  // ---- Ảnh trong bài chi tiết dịch vụ ----
+  choThueXeCauHinhThuc: gallery("Xe cẩu làm việc tại công trình", [
+    "xe-cau-lam-viec-tai-cong-truong.jpg",
+  ]),
+
+  // ---- Tin tức ----
+  news1: gallery("Cách chọn xe cẩu đúng tải trọng cho công trình", [
+    "https://images.unsplash.com/photo-1580901369227-308f6f40bdeb?q=80&w=1172&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D",
+  ]),
+  news2: gallery("Chuẩn bị trước khi xe cẩu đến công trình", [
+    "https://images.unsplash.com/photo-1586458995526-09ce6839babe?q=80&w=1173&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D"
+  ]),
+  news3: gallery("Quy tắc an toàn khi cẩu hàng nặng", [
+    "https://images.unsplash.com/photo-1597089038854-6be9a836a40d?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D"
+  ]),
+  news4: gallery("Quy tắc an toàn khi cẩu hàng nặng", [
+    "https://plus.unsplash.com/premium_photo-1661963718103-0de1844b6076?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D"
+  ]),
+  news5: gallery("Quy tắc an toàn khi cẩu hàng nặng", [
+    "https://plus.unsplash.com/premium_photo-1661957532934-400acebc71b4?q=80&w=1240&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D"
+  ]),
+  news6: gallery("Bảng giá thuê xe cẩu theo tải trọng và thời gian", [
+    "https://plus.unsplash.com/premium_photo-1679784204535-e623926075cb?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D"
+  ]),
+  news7: gallery("Nên thuê xe cẩu hay mua xe cẩu", [
+    "https://images.unsplash.com/photo-1774655746735-27946a887db0?q=80&w=1377&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D"
+  ]),
+  news8: gallery("Sai lầm thường gặp khi thuê xe cẩu", [
+    "https://images.unsplash.com/photo-1580901369227-308f6f40bdeb?q=80&w=1172&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D"
+  ]),
+  news9: gallery("Bảo dưỡng xe cẩu định kỳ", [
+    "https://images.unsplash.com/photo-1586458995526-09ce6839babe?q=80&w=1173&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D"
+  ]),
+
+  // ---- Trang Giới thiệu ----
+  aboutCompany: gallery("Công ty cho thuê xe cẩu tại Tây Ninh", [
+    "he-thong-xe-tai-5-tan-100-tan.jpg",
+  ]),
+  businessChoThueXeCau: gallery("Cho thuê xe cẩu", []),
+  businessCauLapMayMoc: gallery("Cẩu lắp máy móc", [
+    "cau-lap-may-moc-01.jpg",
+  ]),
+  businessCauKetCauThep: gallery("Cẩu kết cấu thép", [
+    "cau-ket-cau-thep-cong-trinh-01.jpg",
+  ]),
+  businessVanChuyenHangNang: gallery("Vận chuyển hàng nặng", []),
+};
+
+// =====================================================================
+// 1. ẢNH CHUNG
+// IMG: mỗi khối lấy ảnh đầu tiên của GALLERY (để code cũ dùng IMG.xxx vẫn chạy)
+// =====================================================================
+export const IMG = Object.fromEntries(
+  Object.entries(GALLERY).map(([key, list]) => [key, cover(list)])
+) as Record<keyof typeof GALLERY, string>;
+
 export const images: Images = {
-  hero: "", // Ảnh lớn ở banner trang chủ
-  about: "", // Ảnh phần giới thiệu ở trang chủ
-  contact: "", // Ảnh phần liên hệ ở trang chủ
+  hero: IMG.hero,
+  about: IMG.about,
+  contact: IMG.contact,
 };
 
 // =====================================================================
@@ -111,7 +204,8 @@ export const services: Service[] = [
     slug: "cho-thue-xe-cau",
     title: "Cho thuê xe cẩu",
     desc: "Thuê theo giờ, ca, ngày hoặc tháng, tải trọng 5 – 100 tấn.",
-    image: "",
+    image: IMG.serviceChoThueXeCau,
+    images: GALLERY.serviceChoThueXeCau,
     capacity: "5 – 100 tấn",
     points: [
       "Thuê linh hoạt theo giờ, ca, ngày, tháng",
@@ -136,7 +230,7 @@ export const services: Service[] = [
               "Theo tháng: dự án dài ngày, cần xe cẩu thường xuyên tại công trường.",
             ],
           },
-          { type: "image", src: "", alt: "Xe cẩu làm việc tại công trình", caption: "Xe cẩu làm việc tại công trình" },
+          { type: "gallery", images: GALLERY.choThueXeCauHinhThuc, caption: "Xe cẩu làm việc tại công trình" },
         ],
       },
       {
@@ -192,7 +286,8 @@ export const services: Service[] = [
     slug: "cau-lap-may-moc",
     title: "Cẩu lắp máy móc",
     desc: "Hạ và lắp đặt máy móc, thiết bị nhà xưởng chính xác, an toàn.",
-    image: "",
+    image: IMG.serviceCauLapMayMoc,
+    images: GALLERY.serviceCauLapMayMoc,
     points: [
       "Khảo sát lối vào và mặt bằng trước khi cẩu",
       "Chọn đúng xe và điểm móc theo từng loại máy",
@@ -351,7 +446,8 @@ export const services: Service[] = [
     slug: "cau-ket-cau-thep",
     title: "Cẩu kết cấu thép",
     desc: "Dựng khung thép, cột điện, trạm biến áp, cấu kiện bê tông.",
-    image: "",
+    image: IMG.serviceCauKetCauThep,
+    images: GALLERY.serviceCauKetCauThep,
     points: [
       "Dựng khung thép, cột điện, trạm biến áp",
       "Cẩu cấu kiện bê tông đúc sẵn",
@@ -451,11 +547,12 @@ export const services: Service[] = [
       },
     ],
   },
-    {
+  {
     slug: "van-chuyen-kem-cau",
     title: "Vận chuyển kèm cẩu",
     desc: "Chở và cẩu hàng nặng trọn gói, không cần thuê nhiều đơn vị.",
-    image: "",
+    image: IMG.serviceVanChuyenKemCau,
+    images: GALLERY.serviceVanChuyenKemCau,
     points: [
       "Một đầu mối cho cả vận chuyển và cẩu",
       "Tiết kiệm thời gian phối hợp",
@@ -605,7 +702,8 @@ export const news: NewsItem[] = [
     title: "Cách chọn xe cẩu đúng tải trọng cho công trình",
     excerpt: "Chọn thiếu tải gây nguy hiểm, chọn thừa tải gây tốn kém. Đây là cách tính nhanh.",
     date: "01/10/2026",
-    image: "",
+    image: IMG.news1,
+    images: GALLERY.news1,
     href: "/tin-tuc",
     tag: "Kinh nghiệm",
   },
@@ -614,7 +712,8 @@ export const news: NewsItem[] = [
     title: "Cần chuẩn bị gì trước khi xe cẩu đến công trình",
     excerpt: "Mặt bằng, nền đất, đường vào và những lưu ý để buổi cẩu diễn ra suôn sẻ.",
     date: "25/09/2026",
-    image: "",
+    image: IMG.news2,
+    images: GALLERY.news2,
     href: "/tin-tuc",
     tag: "Cẩm nang",
   },
@@ -623,7 +722,8 @@ export const news: NewsItem[] = [
     title: "Quy tắc an toàn khi cẩu hàng nặng",
     excerpt: "Những nguyên tắc bắt buộc để bảo vệ người, hàng hóa và thiết bị.",
     date: "15/09/2026",
-    image: "",
+    image: IMG.news3,
+    images: GALLERY.news3,
     href: "/tin-tuc",
     tag: "An toàn",
   },
@@ -632,7 +732,8 @@ export const news: NewsItem[] = [
     title: "Quy tắc an toàn khi cẩu hàng nặng",
     excerpt: "Những nguyên tắc bắt buộc để bảo vệ người, hàng hóa và thiết bị.",
     date: "15/09/2026",
-    image: "",
+    image: IMG.news4,
+    images: GALLERY.news4,
     href: "/tin-tuc",
     tag: "An toàn",
   },
@@ -641,7 +742,8 @@ export const news: NewsItem[] = [
     title: "Quy tắc an toàn khi cẩu hàng nặng",
     excerpt: "Những nguyên tắc bắt buộc để bảo vệ người, hàng hóa và thiết bị.",
     date: "15/09/2026",
-    image: "",
+    image: IMG.news5,
+    images: GALLERY.news5,
     href: "/tin-tuc",
     tag: "An toàn",
   },
@@ -650,6 +752,8 @@ export const news: NewsItem[] = [
     title: "Bảng giá thuê xe cẩu theo tải trọng và thời gian",
     excerpt: "Cách tính giá theo giờ, theo ca và theo chuyến để bạn dự trù chi phí chính xác.",
     date: "10/09/2026",
+    image: IMG.news6,
+    images: GALLERY.news6,
     href: "/tin-tuc",
     tag: "Báo giá",
   },
@@ -658,6 +762,8 @@ export const news: NewsItem[] = [
     title: "Khi nào nên thuê xe cẩu thay vì mua?",
     excerpt: "So sánh chi phí thuê và sở hữu xe cẩu cho từng quy mô công trình.",
     date: "05/09/2026",
+    image: IMG.news7,
+    images: GALLERY.news7,
     href: "/tin-tuc",
     tag: "Kinh nghiệm",
   },
@@ -666,6 +772,8 @@ export const news: NewsItem[] = [
     title: "Những sai lầm thường gặp khi thuê xe cẩu",
     excerpt: "Tổng hợp các lỗi hay gặp và cách tránh để không phát sinh chi phí.",
     date: "01/09/2026",
+    image: IMG.news8,
+    images: GALLERY.news8,
     href: "/tin-tuc",
     tag: "Cẩm nang",
   },
@@ -674,6 +782,8 @@ export const news: NewsItem[] = [
     title: "Bảo dưỡng xe cẩu định kỳ: cần kiểm tra những gì?",
     excerpt: "Danh sách kiểm tra giúp xe cẩu vận hành ổn định và an toàn.",
     date: "28/08/2026",
+    image: IMG.news9,
+    images: GALLERY.news9,
     href: "/tin-tuc",
     tag: "An toàn",
   },
@@ -712,7 +822,7 @@ export const guides: GuideItem[] = [
   {
     id: 3,
     tag: "Lựa chọn",
-    readTime: "1 phút đọc", 
+    readTime: "1 phút đọc",
     title: "Chọn đơn vị cho thuê uy tín",
     summary: "Những điểm nên hỏi trước khi chốt thuê.",
     points: [
@@ -750,7 +860,8 @@ export const contactInfo: ContactItem[] = [
 
 // Section 2: Giới thiệu công ty
 export const aboutCompany: AboutCompany = {
-  image: "", // Ảnh bên trái của section
+  image: IMG.aboutCompany, // Ảnh bên trái của section
+  images: GALLERY.aboutCompany,
   paragraphs: [
     "Chúng tôi chuyên cung cấp dịch vụ cho thuê xe cẩu phục vụ nhà xưởng, công trình xây dựng, lắp đặt máy móc và vận chuyển hàng nặng tại Tây Ninh và các tỉnh lân cận.",
     "Với đội xe đa dạng tải trọng từ 5 đến 100 tấn cùng đội ngũ operator giàu kinh nghiệm, chúng tôi luôn đặt an toàn, đúng hẹn và minh bạch chi phí lên hàng đầu.",
@@ -771,10 +882,10 @@ export const aboutCompany: AboutCompany = {
 
 // Section 3: Ngành nghề kinh doanh chính
 export const businesses: Business[] = [
-  { title: "Cho thuê xe cẩu", desc: "Thuê theo giờ, ca, ngày hoặc tháng với tải trọng từ 5 đến 100 tấn.", image: "" },
-  { title: "Cẩu lắp máy móc", desc: "Hạ và lắp đặt máy móc, thiết bị nhà xưởng chính xác, an toàn.", image: "" },
-  { title: "Cẩu kết cấu thép", desc: "Dựng khung thép, cột điện, trạm biến áp, cấu kiện bê tông.", image: "" },
-  { title: "Vận chuyển hàng nặng", desc: "Chở và cẩu hàng nặng trọn gói, không cần thuê nhiều đơn vị.", image: "" },
+  { title: "Cho thuê xe cẩu", desc: "Thuê theo giờ, ca, ngày hoặc tháng với tải trọng từ 5 đến 100 tấn.", image: IMG.businessChoThueXeCau, images: GALLERY.businessChoThueXeCau },
+  { title: "Cẩu lắp máy móc", desc: "Hạ và lắp đặt máy móc, thiết bị nhà xưởng chính xác, an toàn.", image: IMG.businessCauLapMayMoc, images: GALLERY.businessCauLapMayMoc },
+  { title: "Cẩu kết cấu thép", desc: "Dựng khung thép, cột điện, trạm biến áp, cấu kiện bê tông.", image: IMG.businessCauKetCauThep, images: GALLERY.businessCauKetCauThep },
+  { title: "Vận chuyển hàng nặng", desc: "Chở và cẩu hàng nặng trọn gói, không cần thuê nhiều đơn vị.", image: IMG.businessVanChuyenHangNang, images: GALLERY.businessVanChuyenHangNang },
 ];
 
 // Section 4: Tại sao chọn chúng tôi
@@ -840,3 +951,55 @@ export const faqs: FaqItem[] = [
       "Xe do người vận hành có kinh nghiệm điều khiển, tuân thủ quy trình an toàn khi cẩu hàng nặng. Xe được kiểm tra thường xuyên trước mỗi ca làm việc.",
   },
 ];
+
+// =====================================================================
+// 5. TRANG LIÊN HỆ (/lien-he)
+// =====================================================================
+
+// Thẻ vàng liên hệ (phần đầu của trang)
+export const contactIntro: ContactIntro = {
+  eyebrow: "Liên hệ",
+  title: "Cần thuê xe cẩu? Gọi ngay để nhận báo giá",
+  desc: "Cho chúng tôi biết tải trọng, địa điểm và thời gian, chúng tôi phản hồi nhanh nhất có thể.",
+  areas: "Tây Ninh, TP.HCM, Bình Dương, Long An và các tỉnh lân cận.",
+};
+
+// Lưới thông tin liên hệ. Ô nào để value rỗng "" thì tự ẩn.
+// icon: "phone" | "chat" | "mail" | "map" | "clock"
+export const contactDetails: ContactDetail[] = [
+  {
+    icon: "phone",
+    label: "Hotline",
+    value: site.phoneDisplay,
+    href: `tel:${site.phone}`,
+    hint: "Bấm để gọi ngay",
+  },
+  {
+    icon: "chat",
+    label: "Zalo",
+    value: site.phoneDisplay,
+    href: `https://zalo.me/${site.zalo}`,
+    hint: "Nhắn tin, gửi hình công trình",
+  },
+  {
+    icon: "mail",
+    label: "Email",
+    value: "", // TODO: điền email, ví dụ "lienhe@xecauphuocloc.com"
+    href: "", // ví dụ "mailto:lienhe@xecauphuocloc.com"
+    hint: "Gửi yêu cầu báo giá",
+  },
+  {
+    icon: "map",
+    label: "Địa chỉ",
+    value: site.address,
+  },
+  {
+    icon: "clock",
+    label: "Giờ làm việc",
+    value: site.hours,
+    hint: "Kể cả ngày lễ",
+  },
+];
+
+// Tiêu đề phần bản đồ
+export const contactMapTitle = "Địa chỉ của chúng tôi";

@@ -1,4 +1,5 @@
 import { LucideIcon } from "lucide-react";
+import type { GalleryImage } from "./gallery";
 
 export type Images = {
   hero: string;
@@ -26,7 +27,8 @@ export type ServiceBlock =
   | { type: "paragraph"; text: string }
   | { type: "list"; items: string[]; tone?: "bad" }
   | { type: "note"; text: string }
-  | { type: "image"; src: string; alt: string; caption?: string };
+  | { type: "image"; src: string; alt: string; caption?: string }
+  | { type: "gallery"; images: GalleryImage[]; caption?: string }; // MỚI
 
 export type ServiceTopic = {
   id: string;
@@ -41,6 +43,7 @@ export type Service = {
   title: string;
   desc: string;
   image: string;
+  images?: GalleryImage[]; // MỚI
   capacity?: string;
   points: string[];
   intro: string;
@@ -62,6 +65,7 @@ export type NewsItem = {
   excerpt: string;
   date: string;
   image?: string;
+  images?: GalleryImage[]; // MỚI
   href: string;
   tag: string;
   author?: string; // mặc định "Quản trị viên"
@@ -111,6 +115,7 @@ export type PageInfo = {
 
 export type AboutCompany = {
   image: string;
+  images?: GalleryImage[]; // MỚI
   paragraphs: string[];
   highlights: string[];
   stats: Stat[];
@@ -120,6 +125,7 @@ export type Business = {
   title: string;
   desc: string;
   image: string;
+  images?: GalleryImage[]; // MỚI
 };
 
 export type Reason = {
@@ -141,4 +147,21 @@ export type FaqItem = {
   id: number;
   question: string;
   answer: string;
+};
+
+export type ContactIntro = {
+  eyebrow: string;
+  title: string;
+  desc: string;
+  areas: string;
+};
+
+export type ContactIconName = "phone" | "chat" | "mail" | "map" | "clock";
+
+export type ContactDetail = {
+  icon: ContactIconName;
+  label: string;
+  value: string;
+  href?: string;
+  hint?: string; // dòng chữ nhỏ bên dưới, tùy chọn
 };
