@@ -1,6 +1,6 @@
 import Link from "next/link";
+import Image from "next/image";
 import { news } from "../../lib/data";
-import Photo from "../common/Photo";
 import Section from "../common/Section";
 import SectionTitle from "../common/SectionTitle";
 import NewsMeta from "./NewsMeta";
@@ -21,22 +21,24 @@ export default function NewsFeatured() {
       <div
         className={`grid gap-4 ${others.length > 0 ? "lg:grid-cols-5" : ""}`}
       >
-        {/* Card lớn bên trái: thông tin đè lên ảnh */}
+        {/* Card lớn bên trái: ảnh full card, chữ đè lên ảnh */}
         <Link
           href={main.href}
-          className={`group relative flex min-h-[320px] flex-col justify-end overflow-hidden rounded-2xl bg-primary text-white ${
+          className={`group relative flex min-h-[420px] flex-col justify-end overflow-hidden rounded-2xl bg-primary text-white ${
             others.length > 0 ? "lg:col-span-3" : ""
           }`}
         >
           {main.image && (
-            <Photo
+            <Image
               src={main.image}
               alt={main.title}
-              className="absolute inset-0 h-full w-full transition-transform duration-500 group-hover:scale-105"
+              fill
+              sizes="(max-width: 1024px) 100vw, 60vw"
+              className="object-cover transition-transform duration-500 group-hover:scale-105"
             />
           )}
           {/* Lớp phủ tối dần xuống dưới để chữ dễ đọc */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-black/10" />
 
           <div className="relative p-6 sm:p-8">
             <span className="inline-block rounded-full bg-white px-3 py-1 text-xs font-bold text-primary">
