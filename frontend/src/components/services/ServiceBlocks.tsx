@@ -127,7 +127,7 @@ export default function ServiceBlocks({ blocks, variant = "plain" }: Props) {
             );
           case "gallery":
             return (
-              <figure key={i}>
+              <figure key={i} className="min-w-0">
                 <ImageGallery images={b.images} className="aspect-[16/9]" />
                 {b.caption && (
                   <figcaption className="mt-2 text-xs text-muted-foreground">
