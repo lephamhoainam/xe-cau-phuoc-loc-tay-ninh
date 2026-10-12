@@ -35,8 +35,8 @@ export default function ServiceHero({ service }: { service: Service }) {
           </a>
         </div>
 
-        <div className="relative">
-          <ImageGallery images={service.images} priority className="aspect-[4/3] h-[420px]" />
+        <div className="relative min-w-0">
+          <ImageGallery images={service.images} priority className="aspect-[4/3] md:aspect-auto md:h-[420px]" />
           {service.capacity && (
             <span className="absolute left-3 top-3 z-10 inline-flex items-center gap-1.5 rounded-md bg-card/90 px-3 py-1 text-xs font-bold backdrop-blur">
               <Weight className="h-3.5 w-3.5 text-primary" />

@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { getGalleryMode, type GalleryImage } from "@/lib/gallery";
@@ -12,8 +12,7 @@ type Props = {
   priority?: boolean;
 };
 
-const arrow =
-  "absolute top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-border bg-card/80 text-foreground shadow transition hover:border-primary hover:text-primary";
+const arrow = "absolute top-1/2 z-10 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full border border-border bg-card/80 text-foreground shadow transition hover:border-primary hover:text-primary sm:h-9 sm:w-9";
 
 export default function ImageGallery({
   images,
@@ -25,6 +24,7 @@ export default function ImageGallery({
   const mode = getGalleryMode(list);
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
+  const startX = useRef<number | null>(null);
 
   const go = useCallback(
     (dir: number) => setIndex((i) => (i + dir + list.length) % list.length),
@@ -37,7 +37,7 @@ export default function ImageGallery({
     return () => clearInterval(t);
   }, [mode, paused, interval, go, index]);
 
-  const frame = `relative w-full overflow-hidden rounded-xl bg-muted ${className}`;
+  const frame = `relative w-full min-w-0 max-w-full overflow-hidden rounded-xl bg-muted ${className}`;
 
   if (mode === "none") {
     return (
@@ -49,11 +49,28 @@ export default function ImageGallery({
 
   const active = index % list.length;
 
+  const onTouchEnd = (e: React.TouchEvent) => {
+    setPaused(false);
+    if (startX.current === null) return;
+    const dx = e.changedTouches[0].clientX - startX.current;
+    startX.current = null;
+    if (Math.abs(dx) > 40) go(dx < 0 ? 1 : -1);
+  };
+
   return (
     <div
-      className={frame}
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
+      className={`${frame} touch-pan-y`}
+      onPointerEnter={(e) => e.pointerType === "mouse" && setPaused(true)}
+      onPointerLeave={(e) => e.pointerType === "mouse" && setPaused(false)}
+      onTouchStart={(e) => {
+        startX.current = e.touches[0].clientX;
+        setPaused(true);
+      }}
+      onTouchEnd={onTouchEnd}
+      onTouchCancel={() => {
+        startX.current = null;
+        setPaused(false);
+      }}
     >
       {list.map((img, i) => (
         <Image
@@ -86,7 +103,7 @@ export default function ImageGallery({
                 type="button"
                 onClick={() => setIndex(i)}
                 aria-label={`Xem ảnh ${i + 1}`}
-                className={`h-2 rounded-full transition-all ${
+                className={`relative h-2 rounded-full transition-all before:absolute before:-inset-2 ${
                   i === active ? "w-5 bg-primary" : "w-2 bg-card/70"
                 }`}
               />
