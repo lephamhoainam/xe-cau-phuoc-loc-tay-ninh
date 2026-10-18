@@ -22,34 +22,57 @@ const strengths = [
 export default function TeamSection() {
   return (
     <Section>
-      <div className="grid gap-10 rounded-3xl bg-foreground p-6 text-background sm:p-10 lg:grid-cols-5 lg:gap-14 lg:p-14">
-        {/* Trái: tiêu đề */}
-        <div className="lg:col-span-2">
-          <p className="text-xs font-semibold uppercase tracking-widest text-primary">
-            Đội ngũ
-          </p>
-          <h2 className="mt-3 text-3xl font-extrabold leading-tight tracking-tight sm:text-4xl">
-            Đội ngũ vận hành chuyên nghiệp
-          </h2>
-          <p className="mt-4 text-background/70">
-            Mỗi chuyến cẩu đều do tài xế và nhân sự có kinh nghiệm thực hiện,
-            tuân thủ quy trình an toàn từ lúc khảo sát đến khi hoàn tất.
-          </p>
+      <div className="grid overflow-hidden rounded-3xl border border-border bg-card shadow-lg lg:grid-cols-[2fr_3fr]">
+        {/* Trái: khối màu chính chứa tiêu đề */}
+        <div className="relative flex flex-col justify-center overflow-hidden bg-primary p-6 text-primary-foreground sm:p-10">
+          <span
+            aria-hidden="true"
+            className="pointer-events-none absolute -right-12 -top-12 h-48 w-48 rounded-full bg-white/10"
+          />
+          <span
+            aria-hidden="true"
+            className="pointer-events-none absolute -bottom-16 -left-10 h-40 w-40 rounded-full bg-black/5"
+          />
+          <div className="relative">
+            <p className="flex items-center gap-3 text-xs font-semibold uppercase tracking-widest">
+              <span
+                aria-hidden="true"
+                className="h-0.5 w-8 rounded-full bg-current"
+              />
+              Đội ngũ
+            </p>
+            <h2 className="mt-3 text-2xl font-extrabold leading-tight md:text-3xl">
+              Đội ngũ vận hành chuyên nghiệp
+            </h2>
+            <p className="mt-4 opacity-90">
+              Mỗi chuyến cẩu đều do tài xế và nhân sự có kinh nghiệm thực hiện,
+              tuân thủ quy trình an toàn từ lúc khảo sát đến khi hoàn tất.
+            </p>
+          </div>
         </div>
 
         {/* Phải: 3 điểm mạnh */}
-        <ul className="divide-y divide-background/15 lg:col-span-3">
-          {strengths.map((s) => {
+        <ul className="divide-y divide-border p-6 sm:p-10">
+          {strengths.map((s, i) => {
             const Icon = s.icon;
             return (
-              <li key={s.title} className="flex gap-4 py-5 first:pt-0 last:pb-0">
-                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-primary text-primary-foreground">
-                  <Icon className="h-5 w-5" />
+              <li
+                key={s.title}
+                className="relative flex gap-4 py-5 first:pt-0 last:pb-0"
+              >
+                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                  <Icon className="h-6 w-6" strokeWidth={1.75} />
                 </span>
-                <div>
+                <div className="pr-10">
                   <h3 className="text-lg font-bold leading-snug">{s.title}</h3>
-                  <p className="mt-1 text-sm text-background/70">{s.desc}</p>
+                  <p className="mt-1 text-sm text-muted-foreground">{s.desc}</p>
                 </div>
+                <span
+                  aria-hidden="true"
+                  className="absolute right-0 top-5 text-2xl font-extrabold text-primary/20 first:top-0"
+                >
+                  {String(i + 1).padStart(2, "0")}
+                </span>
               </li>
             );
           })}
