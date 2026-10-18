@@ -14,7 +14,7 @@ export type NavItem = {
 };
 
 export const site: Site = {
-  name: "CÔNG TY TNHH MTV PHƯỚC LỘC TÂY NINH",
+  name: "Công ty TNHH MTV Phước Lộc Tây Ninh",
   slogan: "Cho thuê xe cẩu Tây Ninh 5 – 100 tấn",
   phone: "0918812084",
   phoneDisplay: "0918 812 084 (A.Phương)",

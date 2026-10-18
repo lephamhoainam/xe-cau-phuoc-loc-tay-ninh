@@ -1,16 +1,21 @@
 "use client";
 
 import { useId, useState } from "react";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, Truck, Container, Construction } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import { vehicleTiers } from "../../lib/data";
 import Section from "../common/Section";
 import SectionTitle from "../common/SectionTitle";
 
 type Tier = (typeof vehicleTiers)[number];
 
+// Icon theo thứ tự card (nhẹ -> trung bình -> nặng)
+const tierIcons: LucideIcon[] = [Truck, Container, Construction];
+
 function TierCard({ tier, index }: { tier: Tier; index: number }) {
   const [open, setOpen] = useState(false);
   const panelId = useId();
+  const Icon = tierIcons[index % tierIcons.length];
 
   return (
     <article
@@ -18,10 +23,19 @@ function TierCard({ tier, index }: { tier: Tier; index: number }) {
         open ? "border-primary/60 shadow-lg" : "border-border"
       }`}
     >
-      {/* Số thứ tự */}
-      <span className="mx-auto flex h-14 w-14 items-center justify-center rounded-xl bg-primary text-xl font-extrabold text-primary-foreground">
+      
+    {/* Ô vuông chứa icon + ô tròn số ở góc trên bên phải */}
+    <div className="relative mx-auto h-16 w-16">
+      <span
+        aria-hidden="true"
+        className="flex h-full w-full items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-primary/80 text-primary-foreground shadow-lg shadow-primary/30"
+      >
+        <Icon className="h-8 w-8" strokeWidth={1.75} />
+      </span>
+      <span className="absolute -right-3 -top-3 flex h-8 w-8 items-center justify-center rounded-full border-2 border-primary bg-card text-[11px] font-extrabold leading-none text-foreground shadow-sm">
         {String(index + 1).padStart(2, "0")}
       </span>
+    </div>
 
       <h3 className="mt-6 text-lg font-extrabold leading-snug">{tier.title}</h3>
       <p className="mt-3 text-sm text-muted-foreground">{tier.desc}</p>

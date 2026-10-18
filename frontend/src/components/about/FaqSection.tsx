@@ -1,3 +1,4 @@
+import { Plus } from "lucide-react";
 import { faqs } from "../../lib/data";
 import EmptyState from "../common/EmptyState";
 import Section from "../common/Section";
@@ -13,23 +14,30 @@ export default function FaqSection() {
       ) : (
         <div className="flex flex-col gap-3">
           {faqs.map((f, i) => (
-            <article
+            <details
               key={f.id}
-              className="grid gap-3 rounded-2xl border border-border bg-card p-5 transition hover:border-primary md:grid-cols-[2fr_3fr] md:gap-0 md:p-0"
+              open={i === 0}
+              className="group rounded-2xl border border-border bg-card transition hover:border-primary/50 open:border-primary/60 open:shadow-lg"
             >
-              {/* Trái: số thứ tự + câu hỏi */}
-              <div className="flex items-start gap-4 md:border-r md:border-border md:p-6">
-                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary text-sm font-extrabold text-primary-foreground">
+              <summary className="flex cursor-pointer list-none items-center gap-4 p-4 md:p-5 [&::-webkit-details-marker]:hidden">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-sm font-extrabold text-primary transition group-open:bg-primary group-open:text-primary-foreground">
                   {String(i + 1).padStart(2, "0")}
                 </span>
-                <h3 className="pt-1.5 font-bold leading-snug">{f.question}</h3>
-              </div>
+                <h3 className="flex-1 font-bold leading-snug">{f.question}</h3>
+                <span
+                  aria-hidden="true"
+                  className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary transition group-open:rotate-45 group-open:bg-primary group-open:text-primary-foreground"
+                >
+                  <Plus className="h-4 w-4" />
+                </span>
+              </summary>
 
-              {/* Phải: câu trả lời */}
-              <p className="text-sm leading-relaxed text-muted-foreground md:p-6">
-                {f.answer}
-              </p>
-            </article>
+              <div className="px-4 pb-5 md:px-5 md:pl-[4.75rem]">
+                <p className="border-t border-border pt-4 text-sm leading-relaxed text-muted-foreground">
+                  {f.answer}
+                </p>
+              </div>
+            </details>
           ))}
         </div>
       )}
