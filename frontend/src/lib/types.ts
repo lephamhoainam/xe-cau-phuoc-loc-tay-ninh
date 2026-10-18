@@ -73,6 +73,17 @@ export type NewsItem = {
   featured?: boolean; // đánh dấu bài nổi bật
 };
 
+export type NewsSection = {
+  id: string; // dùng làm anchor cho mục lục
+  heading: string;
+  paragraphs: string[];
+};
+
+export type NewsDetail = NewsItem & {
+  intro: string; // đoạn mở đầu, nằm trước mục đầu tiên
+  sections: NewsSection[];
+};
+
 export type GuideItem = {
   id: number;
   title: string;

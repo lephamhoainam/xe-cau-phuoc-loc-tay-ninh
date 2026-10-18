@@ -22,6 +22,7 @@ import type {
   HeroCard,
   Images,
   NewsItem,
+  NewsDetail,
   GuideItem,
   PageInfo,
   PageKey,
@@ -694,7 +695,6 @@ export const vehicleTiers: VehicleTier[] = [
   },
 ];
 
-// Tin tức mới nhất (href là đường dẫn khi bấm vào bài)
 export const DEFAULT_AUTHOR = "Quản trị viên";
 export const news: NewsItem[] = [
   {
@@ -704,8 +704,10 @@ export const news: NewsItem[] = [
     date: "01/10/2026",
     image: IMG.news1,
     images: GALLERY.news1,
-    href: "/tin-tuc",
+    href: "/tin-tuc/cach-chon-xe-cau-dung-tai-trong",
     tag: "Kinh nghiệm",
+    readTime: "4 phút đọc",
+    featured: true,
   },
   {
     id: 2,
@@ -714,8 +716,9 @@ export const news: NewsItem[] = [
     date: "25/09/2026",
     image: IMG.news2,
     images: GALLERY.news2,
-    href: "/tin-tuc",
+    href: "/tin-tuc/chuan-bi-truoc-khi-xe-cau-den-cong-trinh",
     tag: "Cẩm nang",
+    readTime: "3 phút đọc",
   },
   {
     id: 3,
@@ -724,8 +727,10 @@ export const news: NewsItem[] = [
     date: "15/09/2026",
     image: IMG.news3,
     images: GALLERY.news3,
-    href: "/tin-tuc",
+    href: "/tin-tuc/quy-tac-an-toan-khi-cau-hang-nang",
     tag: "An toàn",
+    readTime: "3 phút đọc",
+    featured: true,
   },
   {
     id: 4,
@@ -734,7 +739,7 @@ export const news: NewsItem[] = [
     date: "15/09/2026",
     image: IMG.news4,
     images: GALLERY.news4,
-    href: "/tin-tuc",
+    href: "/tin-tuc/quy-tac-an-toan-khi-cau-hang-nang-2",
     tag: "An toàn",
   },
   {
@@ -744,7 +749,7 @@ export const news: NewsItem[] = [
     date: "15/09/2026",
     image: IMG.news5,
     images: GALLERY.news5,
-    href: "/tin-tuc",
+    href: "/tin-tuc/quy-tac-an-toan-khi-cau-hang-nang-3",
     tag: "An toàn",
   },
   {
@@ -754,8 +759,9 @@ export const news: NewsItem[] = [
     date: "10/09/2026",
     image: IMG.news6,
     images: GALLERY.news6,
-    href: "/tin-tuc",
+    href: "/tin-tuc/bang-gia-thue-xe-cau",
     tag: "Báo giá",
+    readTime: "4 phút đọc",
   },
   {
     id: 7,
@@ -764,8 +770,9 @@ export const news: NewsItem[] = [
     date: "05/09/2026",
     image: IMG.news7,
     images: GALLERY.news7,
-    href: "/tin-tuc",
+    href: "/tin-tuc/nen-thue-xe-cau-hay-mua",
     tag: "Kinh nghiệm",
+    readTime: "5 phút đọc",
   },
   {
     id: 8,
@@ -774,8 +781,9 @@ export const news: NewsItem[] = [
     date: "01/09/2026",
     image: IMG.news8,
     images: GALLERY.news8,
-    href: "/tin-tuc",
+    href: "/tin-tuc/sai-lam-thuong-gap-khi-thue-xe-cau",
     tag: "Cẩm nang",
+    readTime: "4 phút đọc",
   },
   {
     id: 9,
@@ -784,10 +792,174 @@ export const news: NewsItem[] = [
     date: "28/08/2026",
     image: IMG.news9,
     images: GALLERY.news9,
-    href: "/tin-tuc",
+    href: "/tin-tuc/bao-duong-xe-cau-dinh-ky",
     tag: "An toàn",
+    readTime: "3 phút đọc",
   },
 ];
+
+// Nội dung chi tiết bài viết (DỮ LIỆU GIẢ, thay bằng nội dung thật hoặc API sau).
+// Mỗi phần tử trong mảng là một đoạn văn.
+const safetyRulesContent = [
+  "Cẩu hàng nặng luôn tiềm ẩn rủi ro, vì vậy mọi buổi cẩu đều phải tuân thủ những nguyên tắc an toàn bắt buộc để bảo vệ người, hàng hóa và thiết bị. Chỉ cần bỏ qua một bước nhỏ cũng có thể dẫn đến sự cố nghiêm trọng, nên các quy tắc dưới đây cần được áp dụng cho mọi công trình, dù lớn hay nhỏ.",
+  "Thứ nhất, kiểm tra trước mỗi ca làm việc. Người vận hành cần xem xét tình trạng cáp, móc, khóa, chân chống và các thiết bị an toàn trên xe. Cáp có dấu hiệu đứt sợi, móc bị biến dạng hoặc chân chống rò rỉ dầu đều là lý do để dừng lại và xử lý trước khi cẩu.",
+  "Thứ hai, rào khu vực cẩu. Không ai được đứng hoặc đi lại bên dưới hàng đang treo, cũng như trong tầm xoay của cần. Nên căng dây cảnh báo và cử người canh ở các lối ra vào của khu vực, nhất là công trình đang có nhiều nhóm thợ cùng làm việc.",
+  "Thứ ba, cẩu đúng tải trọng và tầm với. Mỗi xe có biểu đồ tải riêng, và sức nâng giảm dần khi tầm với xa ra. Tuyệt đối không cẩu vượt tải, không kéo xiên hàng hay kéo lê hàng trên mặt đất, vì lực tác động lên cần lúc đó khác hoàn toàn so với tính toán.",
+  "Thứ tư, chỉ một người ra hiệu. Trong suốt buổi cẩu, người chỉ huy duy nhất phối hợp trực tiếp với người vận hành bằng tín hiệu tay hoặc bộ đàm đã thống nhất từ trước. Nhiều người cùng ra hiệu rất dễ gây hiểu nhầm, và hiểu nhầm khi đang treo hàng nặng là điều không thể chấp nhận.",
+  "Thứ năm, chú ý nền đất và vật cản trên cao. Chân chống phải đặt trên nền chắc, phẳng, nếu nền yếu thì trải tấm lót để tránh lún. Đường dây điện, mái che, dầm hay cây cối đều phải được khảo sát trước và giữ khoảng cách an toàn khi nâng, xoay hàng.",
+  "Thứ sáu, dừng cẩu khi điều kiện không cho phép. Gió lớn làm hàng đung đưa khó kiểm soát, mưa to và tầm nhìn kém làm người chỉ huy không quan sát được hàng và người xung quanh. Trong các trường hợp này, tạm dừng và chờ điều kiện tốt hơn luôn là lựa chọn đúng.",
+  "Cuối cùng, an toàn là trách nhiệm của tất cả mọi người có mặt tại hiện trường, không chỉ của người vận hành. Chủ công trình, đội thi công và đơn vị cho thuê xe cần thống nhất quy tắc ngay từ đầu để mỗi buổi cẩu kết thúc an toàn và đúng tiến độ.",
+];
+
+const newsContent: Record<number, string[]> = {
+  1: [
+    "Chọn xe cẩu đúng tải trọng là bước đầu tiên và quan trọng nhất của mỗi buổi cẩu. Xe thiếu tải gây nguy hiểm cho người và công trình, còn xe thừa tải thì tốn chi phí không cần thiết. Bài viết này giúp bạn tính nhanh để chọn đúng ngay từ lần liên hệ đầu tiên.",
+    "Bước 1: xác định trọng lượng thực tế của vật cần cẩu. Đây là con số quan trọng nhất, nhưng cũng hay bị ước chừng sai. Hãy tìm thông số trên nhãn máy, trong tài liệu kỹ thuật hoặc bản vẽ. Nếu là cấu kiện thép hay bê tông, có thể tính từ kích thước và khối lượng riêng của vật liệu.",
+    "Bước 2: cộng thêm trọng lượng phụ kiện. Cáp, móc, khóa và dầm cân bằng (nếu dùng) cũng nằm trong tải mà xe phải nâng. Với vật nhẹ thì phần này không đáng kể, nhưng với vật nặng và cần nhiều phụ kiện thì nên tính thêm để có biên an toàn.",
+    "Bước 3: xác định tầm với. Đây là khoảng cách ngang từ tâm xoay của xe đến vị trí đặt hàng. Sức nâng của xe giảm dần khi tầm với tăng, nên cùng một chiếc xe có thể nâng được nhiều tấn ở gần nhưng chỉ nâng được rất ít khi hàng ở xa.",
+    "Bước 4: đối chiếu với biểu đồ tải. Mỗi xe có biểu đồ cho biết sức nâng cho phép theo từng tầm với và chiều dài cần. Trọng lượng vật cộng phụ kiện phải nhỏ hơn sức nâng ở đúng tầm với và chiều dài cần mà bạn sẽ dùng, chứ không phải sức nâng tối đa ghi trên tên xe.",
+    "Về cách phân nhóm, xe 5 đến 25 tấn linh hoạt cho việc nhỏ và vừa như máy móc nhỏ, vật tư, biển quảng cáo hay kết cấu thép nhà xưởng. Xe 30 đến 50 tấn phù hợp cấu kiện bê tông, cột điện và thiết bị nặng. Xe 60 đến 100 tấn dành cho dự án lớn, nhà máy và máy móc siêu trọng.",
+    "Ngoài tải trọng, đừng quên các yếu tố mặt bằng: đường vào có đủ rộng cho xe không, nền đất có chịu được chân chống không, có dây điện hay mái che trên cao không. Đôi khi xe nhỏ hơn nhưng vào được sát vị trí lại là lựa chọn tốt hơn xe lớn phải đứng xa.",
+    "Cách đơn giản nhất là liên hệ và cho biết trọng lượng vật, khoảng cách từ xe đến vị trí đặt, độ cao cần nâng và địa điểm công trình. Đội kỹ thuật sẽ tính toán và tư vấn loại xe phù hợp, giúp bạn không thuê thiếu tải cũng không tốn kém thừa.",
+  ],
+  2: [
+    "Một buổi cẩu suôn sẻ bắt đầu từ việc chuẩn bị hiện trường trước khi xe đến. Phần lớn việc chuẩn bị đều đơn giản, nhưng nếu bỏ sót thì có thể làm chậm tiến độ, phát sinh chi phí, thậm chí phải hoãn buổi cẩu. Dưới đây là những việc bạn nên làm trước ngày xe có mặt.",
+    "Thứ nhất, chuẩn bị chỗ đặt xe. Xe cẩu cần một vị trí bằng phẳng và đủ chắc để đặt chân chống, vì toàn bộ sức nặng của xe và hàng dồn xuống các điểm này. Nếu nền là đất yếu, đất mới đắp hay sát hố móng, hãy báo trước để chuẩn bị tấm lót hoặc chọn vị trí khác.",
+    "Thứ hai, kiểm tra đường vào. Xe cẩu có kích thước lớn nên cần đường đủ rộng, đủ chắc và không bị cản bởi cổng, cành cây, biển hiệu hay dây điện thấp. Nên đo trước chiều rộng cổng và đi thử tuyến đường vào nếu công trình nằm trong hẻm nhỏ.",
+    "Thứ ba, xem xét vật cản trên cao. Đường dây điện, mái che, dầm cầu trục hay đường ống đều ảnh hưởng đến việc nâng và xoay hàng. Nếu có dây điện gần khu vực cẩu, hãy báo cho đơn vị cho thuê để tính phương án giữ khoảng cách an toàn hoặc phối hợp cắt điện khi cần.",
+    "Thứ tư, dọn dẹp mặt bằng. Khu vực đặt xe và khu vực đặt hàng cần được dọn sạch vật liệu, thiết bị và những thứ không liên quan. Mặt bằng gọn gàng giúp người vận hành quan sát tốt hơn và giảm nguy cơ va chạm trong lúc xoay cần.",
+    "Thứ năm, chuẩn bị người và khu vực cảnh báo. Cần có người chỉ huy phối hợp với người vận hành xe, đồng thời rào hoặc căng dây khu vực cẩu để người không phận sự không đi vào. Thông báo cho các nhóm thợ khác trong công trình biết giờ cẩu để họ tránh khu vực này.",
+    "Thứ sáu, chuẩn bị sẵn vị trí đặt hàng. Với máy móc hoặc cấu kiện, bệ đặt, bu lông neo hay vị trí lắp cần sẵn sàng trước khi hàng được nâng lên. Nếu phải chờ ở bước này, xe cẩu sẽ đứng không và bạn vẫn phải trả chi phí theo thời gian.",
+    "Cuối cùng, hãy liên hệ sớm và cung cấp đầy đủ thông tin về trọng lượng hàng, địa điểm và thời gian. Với công trình phức tạp hoặc mặt bằng chật, nên để đơn vị cho thuê khảo sát trước. Chuẩn bị kỹ ngay từ đầu giúp buổi cẩu diễn ra nhanh, an toàn và đúng chi phí đã thống nhất.",
+  ],
+  3: safetyRulesContent,
+  4: safetyRulesContent,
+  5: safetyRulesContent,
+  6: [
+    "Giá thuê xe cẩu phụ thuộc vào nhiều yếu tố nên không có một mức giá chung cho mọi công việc. Hiểu cách tính giá giúp bạn dự trù chi phí chính xác hơn và so sánh báo giá giữa các đơn vị một cách công bằng. Bài viết này giải thích các yếu tố chính ảnh hưởng đến giá.",
+    "Yếu tố đầu tiên là loại xe và tải trọng. Xe có sức nâng và tầm với lớn hơn cần chi phí đầu tư, vận hành và bảo dưỡng cao hơn, nên giá thuê cũng cao hơn. Vì vậy chọn đúng tải trọng ngay từ đầu vừa an toàn vừa tiết kiệm.",
+    "Yếu tố thứ hai là hình thức thuê. Thuê theo giờ phù hợp việc nhỏ, cẩu nhanh một vài cấu kiện. Thuê theo ca hoặc theo ngày phù hợp công trình cần cẩu liên tục. Thuê theo tháng dành cho dự án dài ngày, thường có đơn giá hợp lý hơn nếu tính trên mỗi giờ làm việc.",
+    "Yếu tố thứ ba là thời gian thi công thực tế. Thời gian không chỉ gồm lúc cẩu mà còn gồm lúc chờ đợi, căn chỉnh và chuẩn bị tại hiện trường. Hiện trường chuẩn bị tốt thì thời gian ngắn lại, chi phí cũng giảm theo.",
+    "Yếu tố thứ tư là quãng đường di chuyển. Xe cẩu cần di chuyển từ bãi đến công trình và quay về, nên công trình càng xa thì chi phí di chuyển càng tăng. Với công trình ở xa hoặc cần xe chuyên chở kèm, nên hỏi rõ cách tính để tránh nhầm lẫn khi nhận báo giá.",
+    "Ngoài ra, một số công việc đặc thù như cẩu trong mặt bằng chật, cẩu ban đêm, ngày lễ hoặc cần phụ kiện riêng có thể phát sinh thêm chi phí. Điều quan trọng là các khoản này phải được nói rõ ngay trong báo giá, không để phát sinh sau khi đã thi công.",
+    "Để nhận báo giá cụ thể, bạn chỉ cần cung cấp trọng lượng hàng, địa điểm, thời gian dự kiến và điều kiện mặt bằng. Chúng tôi báo giá rõ ràng trước khi triển khai, giúp bạn chủ động trong kế hoạch chi phí của công trình.",
+  ],
+  7: [
+    "Nhiều chủ công trình và doanh nghiệp phân vân giữa việc thuê và việc mua xe cẩu. Câu trả lời không giống nhau cho mọi trường hợp, mà phụ thuộc vào tần suất sử dụng, quy mô công việc và khả năng quản lý thiết bị của bạn. Dưới đây là những điểm cần cân nhắc.",
+    "Trước hết là vốn đầu tư. Một chiếc xe cẩu có giá trị rất lớn, và số tiền này sẽ bị đóng băng vào thiết bị thay vì dùng cho hoạt động chính của bạn. Thuê giúp bạn giữ vốn linh hoạt và chỉ trả tiền khi thực sự cần cẩu.",
+    "Tiếp theo là chi phí vận hành đi kèm. Sở hữu xe nghĩa là phải lo bảo dưỡng định kỳ, sửa chữa, kiểm định, bảo hiểm, nhiên liệu và bãi đỗ. Đây là những khoản đều đặn, dù tháng đó xe có làm việc nhiều hay ít.",
+    "Một yếu tố dễ bị bỏ qua là người vận hành. Xe cẩu cần người có tay nghề và chứng chỉ phù hợp. Nếu mua xe, bạn phải tuyển, đào tạo và trả lương cho người vận hành ổn định, kể cả những lúc không có việc để cẩu.",
+    "Tính linh hoạt về tải trọng cũng là lợi thế của việc thuê. Công trình hôm nay cần xe 10 tấn, tháng sau có thể cần xe 50 tấn. Nếu mua một chiếc xe cố định, bạn sẽ bị giới hạn, còn khi thuê thì chọn đúng xe cho từng công việc.",
+    "Vậy khi nào nên mua? Khi bạn cần cẩu liên tục quanh năm, khối lượng công việc đủ lớn để xe luôn có việc, và bạn đã có đội ngũ quản lý, bảo dưỡng thiết bị. Lúc này chi phí tính trên mỗi giờ làm việc của xe sở hữu có thể thấp hơn thuê.",
+    "Với đa số công trình, nhà xưởng và doanh nghiệp chỉ cần cẩu theo từng dự án hoặc theo đợt, thuê vẫn là lựa chọn linh hoạt và tiết kiệm hơn. Bạn không phải lo bảo dưỡng, không bị ràng buộc vốn và luôn được dùng xe đã kiểm định kèm người vận hành có kinh nghiệm.",
+    "Nếu đang phân vân, hãy liệt kê số ngày cần cẩu trong một năm và so sánh tổng chi phí thuê với tổng chi phí sở hữu. Bạn cũng có thể liên hệ để được tư vấn dựa trên khối lượng công việc thực tế của mình.",
+  ],
+  8: [
+    "Khi thuê xe cẩu, một vài sai lầm nhỏ có thể dẫn đến chậm tiến độ, phát sinh chi phí, thậm chí mất an toàn. Dưới đây là những sai lầm thường gặp nhất mà nhiều chủ công trình đã từng mắc phải, cùng cách tránh chúng.",
+    "Sai lầm 1: báo thiếu hoặc sai thông tin hàng. Nhiều người chỉ ước chừng trọng lượng, hoặc quên nói về tầm với và độ cao cần nâng. Hậu quả là xe được chọn không phù hợp, đến nơi phải đổi xe hoặc không cẩu được. Hãy kiểm tra thông số thực tế và cung cấp đầy đủ ngay từ đầu.",
+    "Sai lầm 2: chỉ chọn theo giá rẻ nhất. Báo giá thấp bất thường có thể đi kèm xe cũ, thiếu bảo dưỡng, người vận hành thiếu kinh nghiệm hoặc phát sinh nhiều khoản sau đó. Nên so sánh cả chất lượng xe, tay nghề người vận hành và mức độ rõ ràng của báo giá.",
+    "Sai lầm 3: không chuẩn bị mặt bằng. Nền đất yếu, đường vào quá hẹp hay dây điện thấp là những vấn đề thường chỉ bị phát hiện khi xe đã đến nơi. Lúc đó xe phải chờ hoặc quay về, và bạn vẫn mất chi phí. Hãy khảo sát hoặc nhờ đơn vị cho thuê khảo sát trước.",
+    "Sai lầm 4: không hỏi về giấy tờ và kiểm định. Xe cẩu cần có kiểm định còn hiệu lực và người vận hành cần chứng chỉ phù hợp. Nếu không hỏi trước, bạn có thể gặp rủi ro về an toàn và pháp lý khi xảy ra sự cố tại công trình.",
+    "Sai lầm 5: không thống nhất báo giá bằng văn bản hoặc tin nhắn. Khi chỉ trao đổi miệng, rất dễ có hiểu nhầm về thời gian tính phí, chi phí di chuyển hay các khoản phụ. Hãy xác nhận rõ giá, cách tính thời gian và các khoản đi kèm trước khi thi công.",
+    "Sai lầm 6: đặt xe quá sát giờ. Xe cần được sắp xếp, di chuyển và người vận hành cần chuẩn bị. Với việc không gấp, nên liên hệ sớm để có xe đúng loại và đúng giờ. Với việc gấp, hãy gọi trực tiếp để được hỗ trợ nhanh nhất có thể.",
+    "Để tránh những sai lầm trên, cách tốt nhất là làm việc với đơn vị chịu khảo sát, tư vấn rõ ràng và báo giá minh bạch ngay từ đầu. Một cuộc gọi tư vấn trước khi thuê thường giúp bạn tiết kiệm nhiều thời gian và chi phí hơn so với việc xử lý sự cố về sau.",
+  ],
+  9: [
+    "Xe cẩu được bảo dưỡng định kỳ sẽ vận hành ổn định hơn, bền hơn và giảm nguy cơ sự cố khi đang làm việc. Với thiết bị nâng hàng nặng, bảo dưỡng không chỉ là chuyện tiết kiệm chi phí sửa chữa mà còn là điều kiện cơ bản để bảo đảm an toàn lao động.",
+    "Hệ thống thủy lực là bộ phận cần chú ý đầu tiên. Cần kiểm tra mức dầu, chất lượng dầu, các đường ống và xi lanh xem có rò rỉ hay không. Thủy lực yếu hoặc rò rỉ làm cần hạ chậm, mất lực nâng và có thể dẫn đến sự cố khi đang treo hàng.",
+    "Tiếp đến là cần và chân chống. Cần phải được kiểm tra các mối hàn, khớp nối, độ cong vênh và hoạt động của từng đoạn cần khi vươn ra, thu vào. Chân chống phải bung ra, thu vào trơn tru, giữ được vị trí và không bị chảy xệ khi chịu tải.",
+    "Cáp và móc cẩu là những chi tiết chịu lực trực tiếp nên cần kiểm tra thường xuyên. Cáp có sợi đứt, bị dập, xoắn hay gỉ sét nặng cần được thay thế. Móc cần có chốt an toàn hoạt động tốt, không bị nứt, mòn hay biến dạng.",
+    "Hệ thống phanh, lốp và động cơ cũng quan trọng không kém. Phanh phải ăn đều, lốp đủ áp suất và không bị mòn bất thường, động cơ được thay dầu, lọc dầu và lọc gió theo đúng chu kỳ. Xe di chuyển đến công trình an toàn thì buổi cẩu mới có thể bắt đầu đúng giờ.",
+    "Các thiết bị an toàn trên xe như bộ giới hạn tải, báo tải, còi, đèn cảnh báo và thiết bị chỉ báo độ nghiêng cần luôn hoạt động tốt. Đây là lớp bảo vệ cuối cùng giúp người vận hành phát hiện nguy cơ quá tải hay mất cân bằng trước khi xảy ra sự cố.",
+    "Ngoài bảo dưỡng định kỳ theo lịch, xe còn cần được kiểm tra nhanh trước mỗi ca làm việc. Người vận hành xem qua cáp, móc, chân chống, mức dầu và các chỉ báo trên xe để phát hiện sớm những bất thường, thay vì chờ đến kỳ bảo dưỡng tiếp theo.",
+    "Việc ghi chép lại lịch bảo dưỡng, các hạng mục đã thay và kết quả kiểm định giúp theo dõi tình trạng xe theo thời gian. Khi thuê xe cẩu, bạn có thể hỏi đơn vị cho thuê về lịch bảo dưỡng và kiểm định để yên tâm xe được chăm sóc đúng cách.",
+  ],
+};
+
+// Tiêu đề cho từng đoạn sau đoạn mở đầu (đoạn đầu tiên của mỗi bài là phần intro).
+const safetyHeadings = [
+  "Kiểm tra trước mỗi ca làm việc",
+  "Rào khu vực cẩu",
+  "Cẩu đúng tải trọng và tầm với",
+  "Chỉ một người ra hiệu",
+  "Chú ý nền đất và vật cản trên cao",
+  "Dừng cẩu khi điều kiện không cho phép",
+  "Kết luận",
+];
+
+const newsHeadings: Record<number, string[]> = {
+  1: [
+    "Bước 1: Xác định trọng lượng thực tế",
+    "Bước 2: Cộng thêm trọng lượng phụ kiện",
+    "Bước 3: Xác định tầm với",
+    "Bước 4: Đối chiếu với biểu đồ tải",
+    "Phân nhóm xe theo tải trọng",
+    "Đừng quên yếu tố mặt bằng",
+    "Kết luận",
+  ],
+  2: [
+    "Chuẩn bị chỗ đặt xe",
+    "Kiểm tra đường vào",
+    "Xem xét vật cản trên cao",
+    "Dọn dẹp mặt bằng",
+    "Chuẩn bị người và khu vực cảnh báo",
+    "Chuẩn bị vị trí đặt hàng",
+    "Kết luận",
+  ],
+  3: safetyHeadings,
+  4: safetyHeadings,
+  5: safetyHeadings,
+  6: [
+    "Loại xe và tải trọng",
+    "Hình thức thuê",
+    "Thời gian thi công thực tế",
+    "Quãng đường di chuyển",
+    "Các chi phí đặc thù",
+    "Cách nhận báo giá",
+  ],
+  7: [
+    "Vốn đầu tư",
+    "Chi phí vận hành đi kèm",
+    "Người vận hành",
+    "Tính linh hoạt về tải trọng",
+    "Khi nào nên mua xe?",
+    "Khi nào nên thuê xe?",
+    "Kết luận",
+  ],
+  8: [
+    "Sai lầm 1: Báo thiếu hoặc sai thông tin hàng",
+    "Sai lầm 2: Chỉ chọn theo giá rẻ nhất",
+    "Sai lầm 3: Không chuẩn bị mặt bằng",
+    "Sai lầm 4: Không hỏi về giấy tờ và kiểm định",
+    "Sai lầm 5: Không thống nhất báo giá rõ ràng",
+    "Sai lầm 6: Đặt xe quá sát giờ",
+    "Cách tránh những sai lầm này",
+  ],
+  9: [
+    "Hệ thống thủy lực",
+    "Cần và chân chống",
+    "Cáp và móc cẩu",
+    "Phanh, lốp và động cơ",
+    "Thiết bị an toàn trên xe",
+    "Kiểm tra nhanh trước mỗi ca",
+    "Ghi chép lịch bảo dưỡng",
+  ],
+};
+
+export const newsDetails: NewsDetail[] = news.map((item) => {
+  const [intro = "", ...rest] = newsContent[item.id] ?? [];
+  const headings = newsHeadings[item.id] ?? [];
+
+  return {
+    ...item,
+    intro,
+    sections: rest.map((text, i) => ({
+      id: `muc-${i + 1}`,
+      heading: headings[i] ?? `Mục ${i + 1}`,
+      paragraphs: [text],
+    })),
+  };
+});
 
 export const guides: GuideItem[] = [
   {
