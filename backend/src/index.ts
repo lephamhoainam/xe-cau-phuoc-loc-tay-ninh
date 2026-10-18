@@ -6,6 +6,8 @@ dotenv.config();
 
 import { connectDB } from "./db.js";
 import quotesRouter from "./routes/quotes.js";
+import authRouter from "./routes/auth.js";
+import usersRouter from "./routes/users.js";
 
 const app = express();
 
@@ -21,6 +23,8 @@ app.get("/api/health", (_req, res) => {
 });
 
 app.use("/api/quotes", quotesRouter);
+app.use("/api/auth", authRouter);
+app.use("/api/admin/users", usersRouter);
 
 const port = Number(process.env.PORT ?? 4000);
 
