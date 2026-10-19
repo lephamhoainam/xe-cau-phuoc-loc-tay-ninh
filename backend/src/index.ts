@@ -9,6 +9,9 @@ import quotesRouter from "./routes/quotes.js";
 import authRouter from "./routes/auth.js";
 import usersRouter from "./routes/users.js";
 import adminQuotesRouter from "./routes/adminQuotes.js";
+import publicContentRouter from "./routes/publicContent.js";
+import adminPostsRouter from "./routes/adminPosts.js";
+import adminServicesRouter from "./routes/adminService.js";
 
 const app = express();
 
@@ -27,6 +30,9 @@ app.use("/api/quotes", quotesRouter);
 app.use("/api/auth", authRouter);
 app.use("/api/admin/users", usersRouter);
 app.use("/api/admin/quotes", adminQuotesRouter);
+app.use("/api", publicContentRouter);
+app.use("/api/admin/posts", adminPostsRouter);
+app.use("/api/admin/services", adminServicesRouter);
 const port = Number(process.env.PORT ?? 4000);
 
 connectDB()
