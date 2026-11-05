@@ -89,9 +89,8 @@ export default function PostForm({ id, initial }: { id?: string; initial?: PostF
   }
 
   async function submit(status: "draft" | "published") {
-    setError("");
-    if (!form.title.trim()) {
-      setError("Vui lòng nhập tiêu đề");
+        if (form.title.trim().length < 5) {
+      setError("Tiêu đề tối thiểu 5 ký tự");
       return;
     }
     setSaving(true);
@@ -137,6 +136,7 @@ export default function PostForm({ id, initial }: { id?: string; initial?: PostF
         slug: slugTouched ? f.slug : slugify(title),
       }));
     }}
+    minLength={5}
     maxLength={200}
     className={inputCls}
   />
@@ -169,7 +169,7 @@ export default function PostForm({ id, initial }: { id?: string; initial?: PostF
             </datalist>
           </Field>
           <Field label="Tên người đăng">
-            <input value={form.author} onChange={(e) => set("author", e.target.value)} className={inputCls} />
+            <input value={form.author} onChange={(e) => set("author", e.target.value)} className={inputCls} minLength={2} maxLength={100}/>
           </Field>
           <Field label="Thời gian đăng (để trống = lúc bấm Đăng bài)">
             <input
@@ -180,7 +180,7 @@ export default function PostForm({ id, initial }: { id?: string; initial?: PostF
             />
           </Field>
           <Field label="Thời gian đọc (ví dụ: 5 phút đọc)">
-            <input value={form.readTime} onChange={(e) => set("readTime", e.target.value)} className={inputCls} />
+            <input value={form.readTime} onChange={(e) => set("readTime", e.target.value)} className={inputCls} maxLength={30}/>
           </Field>
         </div>
 

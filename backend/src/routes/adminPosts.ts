@@ -4,7 +4,7 @@ import { Post } from "../models/Post.js";
 import { requireAuth, requirePermission } from "../middleware/auth.js";
 import { uniqueSlug, safeImageUrl, slugify } from "../utils/slug.js";
 import { cleanImages, type GalleryImage } from "../utils/content.js";
-
+import { cleanText, cleanMultiline, checkText, checkMultiline } from "../utils/validate.js";
 const router = Router();
 router.use(requireAuth, requirePermission("posts:manage"));
 
@@ -25,22 +25,34 @@ type PostInput = {
 };
 
 function parsePost(body: any): { error: string } | { data: PostInput } {
-  const title = String(body?.title ?? "").trim();
-  if (!title) return { error: "Vui lòng nhập tiêu đề" };
-  if (title.length > 200) return { error: "Tiêu đề tối đa 200 ký tự" };
+    const title = cleanText(body?.title);
+  const excerpt = cleanText(body?.excerpt);
+  const tag = cleanText(body?.tag) || "Tin tức";
+  const author = cleanText(body?.author) || "Quản trị viên";
+  const readTime = cleanText(body?.readTime);
+  const content = cleanMultiline(body?.content, 50000);
+  const conclusion = cleanMultiline(body?.conclusion, 5000);
 
-  const images = cleanImages(body.images);
-
+  const err =
+    checkText(title, "Tiêu đề", { min: 5, max: 200 }) ??
+    checkText(excerpt, "Mô tả", { max: 300, required: false }) ??
+    checkText(tag, "Danh mục", { max: 50 }) ??
+    checkText(author, "Tên người đăng", { min: 2, max: 100 }) ??
+    checkText(readTime, "Thời gian đọc", { max: 30, required: false }) ??
+    checkMultiline(content, "Nội dung bài viết", { max: 50000, required: false }) ??
+    checkMultiline(conclusion, "Kết luận", { max: 5000, required: false });
+  if (err) return { error: err };
+  const images = cleanImages(body.images);  
   const data: PostInput = {
     title,
-    excerpt: String(body.excerpt ?? "").trim().slice(0, 300),
-    content: String(body.content ?? "").slice(0, 50000),
-    conclusion: String(body.conclusion ?? "").slice(0, 5000),
+    excerpt,
+    content,
+    conclusion,
     images,
     image: images[0]?.src ?? "", // ảnh bìa = ảnh đầu tiên
-    tag: String(body.tag ?? "").trim().slice(0, 50) || "Tin tức",
-    author: String(body.author ?? "").trim().slice(0, 100) || "Quản trị viên",
-    readTime: String(body.readTime ?? "").trim().slice(0, 30),
+    tag,
+    author,
+    readTime,
     featured: Boolean(body.featured),
     status: body.status === "published" ? "published" : "draft",
     slug: slugify(String(body.slug ?? "")),
