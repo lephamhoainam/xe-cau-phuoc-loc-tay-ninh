@@ -2,31 +2,56 @@ import { Router } from "express";
 import mongoose from "mongoose";
 import { Post } from "../models/Post.js";
 import { requireAuth, requirePermission } from "../middleware/auth.js";
-import { uniqueSlug, safeImageUrl } from "../utils/slug.js";
-import { cleanImages } from "../utils/content.js";
+import { uniqueSlug, safeImageUrl, slugify } from "../utils/slug.js";
+import { cleanImages, type GalleryImage } from "../utils/content.js";
 
 const router = Router();
 router.use(requireAuth, requirePermission("posts:manage"));
 
-function parsePost(body: any) {
-  const title = String(body?.title ?? "").trim();
-  if (!title) return { error: "Vui lòng nhập tiêu đề" } as const;
-  if (title.length > 200) return { error: "Tiêu đề tối đa 200 ký tự" } as const;
+type PostInput = {
+  title: string;
+  excerpt: string;
+  content: string;
+  conclusion: string;
+  images: GalleryImage[];
+  image: string;
+  tag: string;
+  author: string;
+  readTime: string;
+  featured: boolean;
+  status: "draft" | "published";
+  publishedAt?: Date;
+  slug: string;
+};
 
-  return {
-    data: {
-      title,
-      excerpt: String(body.excerpt ?? "").trim().slice(0, 300),
-      content: String(body.content ?? "").slice(0, 50000),
-      image: safeImageUrl(body.image),
-      images: cleanImages(body.images),
-      tag: String(body.tag ?? "").trim().slice(0, 50) || "Tin tức",
-      author: String(body.author ?? "").trim().slice(0, 100) || "Quản trị viên",
-      readTime: String(body.readTime ?? "").trim().slice(0, 30),
-      featured: Boolean(body.featured),
-      status: body.status === "published" ? ("published" as const) : ("draft" as const),
-    },
-  } as const;
+function parsePost(body: any): { error: string } | { data: PostInput } {
+  const title = String(body?.title ?? "").trim();
+  if (!title) return { error: "Vui lòng nhập tiêu đề" };
+  if (title.length > 200) return { error: "Tiêu đề tối đa 200 ký tự" };
+
+  const images = cleanImages(body.images);
+
+  const data: PostInput = {
+    title,
+    excerpt: String(body.excerpt ?? "").trim().slice(0, 300),
+    content: String(body.content ?? "").slice(0, 50000),
+    conclusion: String(body.conclusion ?? "").slice(0, 5000),
+    images,
+    image: images[0]?.src ?? "", // ảnh bìa = ảnh đầu tiên
+    tag: String(body.tag ?? "").trim().slice(0, 50) || "Tin tức",
+    author: String(body.author ?? "").trim().slice(0, 100) || "Quản trị viên",
+    readTime: String(body.readTime ?? "").trim().slice(0, 30),
+    featured: Boolean(body.featured),
+    status: body.status === "published" ? "published" : "draft",
+    slug: slugify(String(body.slug ?? "")),
+  };
+
+  if (body.publishedAt) {
+    const d = new Date(body.publishedAt);
+    if (!Number.isNaN(d.getTime())) data.publishedAt = d;
+  }
+
+  return { data };
 }
 
 // Chỉ giữ một bài nổi bật
@@ -71,12 +96,15 @@ router.post("/", async (req, res) => {
   const parsed = parsePost(req.body);
   if ("error" in parsed) return res.status(400).json({ message: parsed.error });
 
-  const slug = await uniqueSlug(Post, parsed.data.title);
+  const slug = await uniqueSlug(Post, parsed.data.slug || parsed.data.title);
   const post = await Post.create({
     ...parsed.data,
     slug,
-    publishedAt: parsed.data.status === "published" ? new Date() : undefined,
+    publishedAt:
+      parsed.data.publishedAt ??
+      (parsed.data.status === "published" ? new Date() : undefined),
   });
+
   if (post.featured) await clearOtherFeatured(post._id);
   res.status(201).json(post);
 });
@@ -91,13 +119,15 @@ router.put("/:id", async (req, res) => {
   const post = await Post.findById(req.params.id);
   if (!post) return res.status(404).json({ message: "Không tìm thấy bài viết" });
 
-  if (parsed.data.title !== post.title) {
-    post.slug = await uniqueSlug(Post, parsed.data.title, post._id.toString());
+    const wantedSlug = parsed.data.slug || post.slug;
+  if (wantedSlug !== post.slug) {
+    post.slug = await uniqueSlug(Post, wantedSlug, post._id.toString());
   }
   if (parsed.data.status === "published" && !post.publishedAt) {
     post.publishedAt = new Date();
   }
-  Object.assign(post, parsed.data);
+  const { slug: _ignored, ...rest } = parsed.data;
+  Object.assign(post, rest);
   await post.save();
 
   if (post.featured) await clearOtherFeatured(post._id);

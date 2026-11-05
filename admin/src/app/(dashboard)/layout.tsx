@@ -36,7 +36,9 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
   const nav = [
     { href: "/", label: "Tổng quan", show: true },
+    { href: "/posts", label: "Bài viết", show: hasPermission(user, "posts:manage") },
     { href: "/quotes", label: "Báo giá", show: hasPermission(user, "quotes:read") },
+    { href: "/users", label: "Tài khoản", show: user.role === "superAdmin" },
   ].filter((item) => item.show);
 
   return (
