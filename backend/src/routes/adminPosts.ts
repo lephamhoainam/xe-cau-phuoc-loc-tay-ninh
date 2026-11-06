@@ -39,8 +39,8 @@ function parsePost(body: any): { error: string } | { data: PostInput } {
     checkText(tag, "Danh mục", { max: 50 }) ??
     checkText(author, "Tên người đăng", { min: 2, max: 100 }) ??
     checkText(readTime, "Thời gian đọc", { max: 30, required: false }) ??
-    checkMultiline(content, "Nội dung bài viết", { max: 50000, required: false }) ??
-    checkMultiline(conclusion, "Kết luận", { max: 5000, required: false });
+    checkMultiline(content, "Nội dung bài viết", { min: 1, max: 50000, required: false }) ??
+    checkMultiline(conclusion, "Kết luận", { min: 1, max: 5000, required: false });
   if (err) return { error: err };
   const images = cleanImages(body.images);  
   const data: PostInput = {

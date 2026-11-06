@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { api } from "@/lib/api";
 import { useAuth } from "@/lib/auth-context";
+import { checkText, checkLongText } from "@/lib/validate";
 
 type PostImage = { src: string; alt?: string };
 
@@ -44,7 +45,11 @@ export function toLocalInput(iso?: string) {
 
 const inputCls =
   "w-full rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-sm outline-none focus:border-amber-400";
-
+// Hiển thị cảnh baos
+function FieldError({ message, show }: { message: string | null; show: boolean }) {
+  if (!show || !message) return null;
+  return <p className="mt-1 text-xs text-red-400">{message}</p>;
+}
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <div>
@@ -76,8 +81,11 @@ export default function PostForm({ id, initial }: { id?: string; initial?: PostF
   );
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState("");
+  const [touched, setTouched] = useState<Record<string, boolean>>({});
+  const touch = (k: string) => setTouched((t) => ({ ...t, [k]: true }));
   const [slugTouched, setSlugTouched] = useState(Boolean(initial?.slug));
-  function set<K extends keyof PostFormData>(key: K, value: PostFormData[K]) {
+    function set<K extends keyof PostFormData>(key: K, value: PostFormData[K]) {
+    setError("");
     setForm((f) => ({ ...f, [key]: value }));
   }
 
@@ -88,14 +96,16 @@ export default function PostForm({ id, initial }: { id?: string; initial?: PostF
     );
   }
 
-  async function submit(status: "draft" | "published") {
-        if (form.title.trim().length < 5) {
-      setError("Tiêu đề tối thiểu 5 ký tự");
+    async function submit(status: "draft" | "published") {
+    setError("");
+    const first = Object.values(errors).find(Boolean);
+        if (first) {
+      setTouched({ title: true, excerpt: true, tag: true, author: true, readTime: true });
       return;
     }
     setSaving(true);
     try {
-      const body = {
+            const body = {
         ...form,
         status,
         publishedAt: form.publishedAt ? new Date(form.publishedAt).toISOString() : undefined,
@@ -109,10 +119,21 @@ export default function PostForm({ id, initial }: { id?: string; initial?: PostF
       router.push("/posts");
     } catch (e) {
       setError(e instanceof Error ? e.message : "Có lỗi xảy ra");
+    } finally {
       setSaving(false);
     }
   }
-
+  // Tính lỗi từng ô
+    const errors = {
+    title: checkText(form.title, "Tiêu đề", { min: 5, max: 200, minWords: 2 }),
+    excerpt: checkText(form.excerpt, "Mô tả", { max: 300, required: false, minWords: 2 }),
+    tag: checkText(form.tag, "Danh mục", { max: 50 }),
+    author: checkText(form.author, "Tên người đăng", { min: 2, max: 100 }),
+    content: checkLongText(form.content, "Nội dung bài viết", 1, 50000),
+    conclusion: checkLongText(form.conclusion, "Kết luận", 1, 5000),
+    readTime: checkText(form.readTime, "Thời gian đọc", { max: 30, required: false }),
+  };
+  const hasErrors = Object.values(errors).some(Boolean);
   return (
     <div className="space-y-5">
       <div className="flex flex-wrap items-center justify-between gap-2">
@@ -128,18 +149,16 @@ export default function PostForm({ id, initial }: { id?: string; initial?: PostF
        <Field label="Tiêu đề *">
   <input
     value={form.title}
-    onChange={(e) => {
+       onChange={(e) => {
+      setError("");
       const title = e.target.value;
-      setForm((f) => ({
-        ...f,
-        title,
-        slug: slugTouched ? f.slug : slugify(title),
-      }));
+      setForm((f) => ({ ...f, title, slug: slugTouched ? f.slug : slugify(title) }));
     }}
-    minLength={5}
+    onBlur={() => touch("title")}
     maxLength={200}
-    className={inputCls}
+    className={`${inputCls} ${touched.title && errors.title ? "border-red-500" : ""}`}
   />
+  <FieldError message={errors.title} show={!!touched.title} />
 </Field>
 
 <Field label="Đường dẫn (slug) - tự tạo từ tiêu đề, có thể sửa">
@@ -156,21 +175,31 @@ export default function PostForm({ id, initial }: { id?: string; initial?: PostF
 
         <div className="grid gap-4 sm:grid-cols-2">
           <Field label="Danh mục bài viết">
-            <input
-              list="categories"
-              value={form.tag}
-              onChange={(e) => set("tag", e.target.value)}
-              className={inputCls}
-            />
-            <datalist id="categories">
-              {CATEGORIES.map((c) => (
-                <option key={c} value={c} />
-              ))}
-            </datalist>
-          </Field>
+  <input
+    list="categories"
+    value={form.tag}
+    onChange={(e) => set("tag", e.target.value)}
+    onBlur={() => touch("tag")}
+    className={`${inputCls} ${touched.tag && errors.tag ? "border-red-500" : ""}`}
+  />
+  <datalist id="categories">
+    {CATEGORIES.map((c) => (
+      <option key={c} value={c} />
+    ))}
+  </datalist>
+  <FieldError message={errors.tag} show={!!touched.tag} />
+</Field>
           <Field label="Tên người đăng">
-            <input value={form.author} onChange={(e) => set("author", e.target.value)} className={inputCls} minLength={2} maxLength={100}/>
-          </Field>
+  <input
+    value={form.author}
+    onChange={(e) => set("author", e.target.value)}
+    onBlur={() => touch("author")}
+    minLength={2}
+    maxLength={100}
+    className={`${inputCls} ${touched.author && errors.author ? "border-red-500" : ""}`}
+  />
+  <FieldError message={errors.author} show={!!touched.author} />
+</Field>
           <Field label="Thời gian đăng (để trống = lúc bấm Đăng bài)">
             <input
               type="datetime-local"
@@ -179,20 +208,29 @@ export default function PostForm({ id, initial }: { id?: string; initial?: PostF
               className={inputCls}
             />
           </Field>
-          <Field label="Thời gian đọc (ví dụ: 5 phút đọc)">
-            <input value={form.readTime} onChange={(e) => set("readTime", e.target.value)} className={inputCls} maxLength={30}/>
-          </Field>
+         <Field label="Thời gian đọc (ví dụ: 5 phút đọc)">
+  <input
+    value={form.readTime}
+    onChange={(e) => set("readTime", e.target.value)}
+    onBlur={() => touch("readTime")}
+    maxLength={30}
+    className={`${inputCls} ${touched.readTime && errors.readTime ? "border-red-500" : ""}`}
+  />
+  <FieldError message={errors.readTime} show={!!touched.readTime} />
+</Field>
         </div>
 
         <Field label="Mô tả ngắn (tối đa 300 ký tự)">
-          <textarea
-            value={form.excerpt}
-            onChange={(e) => set("excerpt", e.target.value)}
-            maxLength={300}
-            rows={2}
-            className={inputCls}
-          />
-        </Field>
+  <textarea
+    value={form.excerpt}
+    onChange={(e) => set("excerpt", e.target.value)}
+    onBlur={() => touch("excerpt")}
+    maxLength={300}
+    rows={2}
+    className={`${inputCls} ${touched.excerpt && errors.excerpt ? "border-red-500" : ""}`}
+  />
+  <FieldError message={errors.excerpt} show={!!touched.excerpt} />
+</Field>
 
         <Field label="Nội dung bài viết">
           <textarea
@@ -264,20 +302,23 @@ export default function PostForm({ id, initial }: { id?: string; initial?: PostF
       </div>
 
       <div className="flex flex-wrap gap-3">
+        {hasErrors && (
+  <p className="text-sm text-red-400">Vui lòng sửa các ô báo đỏ trước khi lưu hoặc đăng bài.</p>
+)}
         <button
-          disabled={saving}
-          onClick={() => submit("published")}
-          className="rounded-lg bg-amber-400 px-5 py-2 text-sm font-semibold text-neutral-900 disabled:opacity-60"
-        >
-          {saving ? "Đang lưu..." : "Đăng bài"}
-        </button>
-        <button
-          disabled={saving}
-          onClick={() => submit("draft")}
-          className="rounded-lg border border-neutral-700 px-5 py-2 text-sm disabled:opacity-60"
-        >
-          Lưu nháp
-        </button>
+  disabled={saving || hasErrors}
+  onClick={() => submit("published")}
+  className="rounded-lg bg-amber-400 px-5 py-2 text-sm font-semibold text-neutral-900 disabled:cursor-not-allowed disabled:opacity-50"
+>
+  {saving ? "Đang lưu..." : "Đăng bài"}
+</button>
+<button
+  disabled={saving || hasErrors}
+  onClick={() => submit("draft")}
+  className="rounded-lg border border-neutral-700 px-5 py-2 text-sm disabled:cursor-not-allowed disabled:opacity-50"
+>
+  Lưu nháp
+</button>
       </div>
     </div>
   );
