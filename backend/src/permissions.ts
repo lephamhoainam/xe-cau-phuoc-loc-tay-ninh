@@ -3,6 +3,7 @@ export const PERMISSIONS = [
   "quotes:update",
   "quotes:delete",
   "posts:manage",
+  "guides:manage",
   "services:manage",
 ] as const;
 

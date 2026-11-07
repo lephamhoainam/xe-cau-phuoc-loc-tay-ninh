@@ -20,7 +20,8 @@
     "express": "^5.3.0",
     "express-rate-limit": "^8.7.3",
     "jsonwebtoken": "^9.0.3",
-    "mongoose": "^9.11.2"
+    "mongoose": "^9.11.2",
+    "sanitize-html": "^2.18.1"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.6",
@@ -28,6 +29,7 @@
     "@types/express": "^5.0.6",
     "@types/jsonwebtoken": "^9.0.10",
     "@types/node": "^26.6.5",
+    "@types/sanitize-html": "^2.16.2",
     "tsx": "^4.23.15",
     "typescript": "^7.0.2"
   }

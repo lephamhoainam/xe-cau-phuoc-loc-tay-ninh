@@ -12,7 +12,7 @@ import adminQuotesRouter from "./routes/adminQuotes.js";
 import publicContentRouter from "./routes/publicContent.js";
 import adminPostsRouter from "./routes/adminPosts.js";
 import adminServicesRouter from "./routes/adminService.js";
-
+import adminGuidesRouter from "./routes/adminGuide.js";
 const app = express();
 
 app.use(
@@ -33,6 +33,7 @@ app.use("/api/admin/quotes", adminQuotesRouter);
 app.use("/api", publicContentRouter);
 app.use("/api/admin/posts", adminPostsRouter);
 app.use("/api/admin/services", adminServicesRouter);
+app.use("/api/admin/guides", adminGuidesRouter);
 const port = Number(process.env.PORT ?? 4000);
 
 connectDB()
