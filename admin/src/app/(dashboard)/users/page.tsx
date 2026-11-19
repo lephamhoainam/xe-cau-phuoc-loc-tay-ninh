@@ -18,12 +18,14 @@ const PERM_LABEL: Record<string, string> = {
   "quotes:delete": "Xóa báo giá",
   "posts:manage": "Quản lý bài viết",
   "services:manage": "Quản lý dịch vụ",
+  "guides:manage": "Quản lý cẩm nang",
 };
 
 const GROUPS: { title: string; perms: string[] }[] = [
   { title: "Báo giá", perms: ["quotes:read", "quotes:update", "quotes:delete"] },
   { title: "Bài viết", perms: ["posts:manage"] },
   { title: "Dịch vụ", perms: ["services:manage"] },
+  { title: "Cẩm nang", perms: ["guides:manage"] },
 ];
 
 // Sửa/xóa báo giá bắt buộc kèm quyền xem
