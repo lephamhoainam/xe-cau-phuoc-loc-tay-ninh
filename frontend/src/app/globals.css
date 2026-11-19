@@ -34,51 +34,66 @@
   --radius-xl: calc(var(--radius) * 1.4);
 }
 
+@theme inline {
+  /* thêm cạnh --color-primary */
+  --color-primary-text: var(--primary-text);
+  --color-highlight: var(--highlight);
+}
+
 :root {
-  --background: #f6f7f9; /* xám trắng trung tính */
-  --foreground: #1c1f26;
+  --background: #f9f8f4;         /* nền kem giữ nguyên */
+  --foreground: #1c1917;
   --card: #ffffff;
-  --card-foreground: #1c1f26;
+  --card-foreground: #1c1917;
   --popover: #ffffff;
-  --popover-foreground: #1c1f26;
-  --primary: #d68a00; /* vàng hổ phách */
-  --primary-foreground: #1c1f26; /* chữ tối trên nền vàng cho dễ đọc */
-  --primary-hover: #b87400;
-  --secondary: #eceef2;
-  --secondary-foreground: #1c1f26;
-  --muted: #eff1f4;
-  --muted-foreground: #5f6673;
-  --accent: #eceef2;
-  --accent-foreground: #1c1f26;
-  --destructive: #d92d20;
-  --border: #e0e3e9;
-  --input: #e0e3e9;
-  --ring: #d68a00;
-  --success: #1f8a5b;
-  --radius: 0.5rem;
+  --popover-foreground: #1c1917;
+  --primary: #e8b032;            /* vàng mật ong: nền nút, viền chọn, ô icon */
+  --primary-foreground: #1c1917; /* chữ đen trên nền vàng */
+  --primary-hover: #d49a1c;
+  --primary-text: #1c1917;       /* chữ/link nhấn = đen, kèm gạch vàng */
+  --highlight: #d4620f;          /* cam: icon, số lớn, tiêu đề lớn */
+  --secondary: #f3f1ea;
+  --secondary-foreground: #1c1917;
+  --muted: #f3f1ea;
+  --muted-foreground: #57534e;
+  --accent: #f7ecd0;             /* vàng nhạt kem: nền ô icon, hover */
+  --accent-foreground: #1c1917;
+  --destructive: #dc2626;
+  --border: #e8e5dc;
+  --input: #e8e5dc;
+  --ring: #d49a1c;
+  --success: #15803d;
+  --radius: 0.75rem;
 }
 
 .dark {
-  --background: #26241f; /* xám than ấm, không đen */
-  --foreground: #efebe3;
-  --card: #322f29;
-  --card-foreground: #efebe3;
-  --popover: #322f29;
-  --popover-foreground: #efebe3;
-  --primary: #e0a526; /* vàng mật ong, dịu hơn */
-  --primary-foreground: #26241f;
-  --primary-hover: #eebb4a;
-  --secondary: #3d3a33;
-  --secondary-foreground: #efebe3;
-  --muted: #2c2a25;
-  --muted-foreground: #a9a396;
-  --accent: #3d3a33;
-  --accent-foreground: #efebe3;
-  --destructive: #e5645f;
-  --border: #46423a;
-  --input: #46423a;
-  --ring: #e0a526;
-  --success: #5cb88a;
+  color-scheme: dark;
+  --background: #181715;         /* không đen tuyền, ấm nhẹ */
+  --foreground: #dcd9d0;         /* giảm độ trắng, đỡ nhòe chữ */
+  --card: #22211e;
+  --card-foreground: #dcd9d0;
+  --popover: #22211e;
+  --popover-foreground: #dcd9d0;
+  --primary: #d99a1e;            /* vàng đã giảm sáng */
+  --primary-foreground: #181715;
+  --primary-hover: #e5ab3a;
+  --primary-text: #e0ad45;       /* chữ vàng dịu, ≈9:1 */
+  --secondary: #2c2a26;
+  --secondary-foreground: #dcd9d0;
+  --muted: #1e1d1b;
+  --muted-foreground: #96938a;
+  --accent: #2b2618;
+  --accent-foreground: #dcd9d0;
+  --destructive: #e0645d;
+  --border: #353330;
+  --input: #3d3a36;
+  --ring: #d99a1e;
+  --success: #5bb98a;
+}
+
+/* Giảm chói cho ảnh ở dark mode */
+.dark img:not([data-no-dim]) {
+  filter: brightness(0.88) contrast(1.02);
 }
 
 @layer base {

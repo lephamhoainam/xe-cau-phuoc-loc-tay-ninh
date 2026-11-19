@@ -15,11 +15,13 @@ export default function ServicesSection({ limit }: { limit?: number }) {
   return (
     <Section>
       <div className="flex items-end justify-between">
-        <SectionTitle
-          eyebrow="Dịch vụ"
-          title="Dịch vụ cẩu hàng theo từng nhu cầu công trình"
-          sub="Từ lắp đặt máy móc đến dựng kết cấu thép, chúng tôi tư vấn đúng loại xe và tải trọng, lo trọn gói từ khảo sát đến thi công."
-        />
+        <div className="max-w-2xl">
+          <SectionTitle
+            eyebrow="Dịch vụ"
+            title="Dịch vụ cẩu hàng theo từng nhu cầu công trình"
+            sub="Từ lắp đặt máy móc đến dựng kết cấu thép, chúng tôi tư vấn đúng loại xe và tải trọng, lo trọn gói từ khảo sát đến thi công."
+          />
+        </div>
         {hasMore && (
           <Link
             href="/dich-vu"
@@ -106,6 +108,16 @@ export default function ServicesSection({ limit }: { limit?: number }) {
             </a>
           </div>
         </div>
+      )}
+
+      {/* Link xem tất cả cho mobile */}
+      {hasMore && (
+        <Link
+          href="/dich-vu"
+          className="mt-8 block text-center font-semibold text-primary hover:text-primary-hover sm:hidden"
+        >
+          Xem tất cả dịch vụ →
+        </Link>
       )}
     </Section>
   );
